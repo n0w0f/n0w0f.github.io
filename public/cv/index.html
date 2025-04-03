@@ -1,290 +1,187 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nawaf Alampara - Curriculum Vitae</title>
-    <link rel="stylesheet" href="style.css">
-    <!-- Link to Font Awesome for Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-</head>
-<body>
-    <div class="container">
-        <header>
-            <h1>Nawaf Alampara</h1>
-            <p class="tagline">Doctoral Researcher</p>
-            <div class="contact-info">
-                <span><i class="fas fa-envelope"></i> <a href="mailto:pvt.nawaf@gmail.com">pvt.nawaf@gmail.com</a></span>
-                <span><i class="fas fa-map-marker-alt"></i> Jena, Germany</span>
-                <span><i class="fab fa-github"></i> <a href="https://github.com/n0w0f" target="_blank" rel="noopener noreferrer">n0w0f</a></span>
-                <span><i class="fab fa-linkedin"></i> <a href="https://www.linkedin.com/in/nawaf-a-78731612b/" target="_blank" rel="noopener noreferrer">LinkedIn</a></span>
-                 <!-- Add homepage if you have one -->
-                 <!-- <span><i class="fas fa-globe"></i> <a href="https://your-website.com" target="_blank" rel="noopener noreferrer">your-website.com</a></span> -->
-            </div>
-            <hr class="header-rule">
-        </header>
+<meta charset="utf-8"><style class="fallback">body{visibility:hidden;}</style>
 
-        <div class="cv-body">
-            <div class="main-column">
-
-                <section id="work-experience">
-                    <h2><i class="fas fa-briefcase"></i> Work Experience</h2>
-                    <hr class="section-rule">
-
-                    <div class="cv-entry">
-                        <div class="entry-header">
-                            <span class="date">Nov 2023 – Present</span>
-                            <h3>PhD Research Activities</h3>
-                            <p class="institution">Friedrich-Schiller-Universität Jena, Jena, Germany</p>
-                        </div>
-                        <ul>
-                            <li><strong><a href="https://arxiv.org/abs/2406.17295" target="_blank" rel="noopener noreferrer">MatText</a>:</strong> Developed benchmarks to evaluate LLMs in materials science, focusing on geometric information capture. (<em>AI4Mat-Vienna 2024 spotlight</em>)</li>
-                            <li><strong><a href="https://arxiv.org/abs/2404.01475" target="_blank" rel="noopener noreferrer">ChemBench</a>:</strong> Created evaluation framework and dataset to rigorously assess LLM chemical knowledge and reasoning against human experts.</li>
-                            <li><strong><a href="https://arxiv.org/pdf/2411.16955" target="_blank" rel="noopener noreferrer">MaCBench</a>:</strong> Built multi-modal AI benchmarks for scientific data extraction, visual understanding, and reasoning in chemistry/materials science. (<em>AI4Mat-NeurIPS 2024 spotlight</em>)</li>
-                        </ul>
-                    </div>
-
-                    <div class="cv-entry">
-                        <div class="entry-header">
-                             <span class="date">Nov 2023 – Apr 2024</span>
-                             <h3>AI Research Contractor (Part-time)</h3>
-                             <p class="institution">Stability AI, Remote</p>
-                        </div>
-                        <ul>
-                             <li>Prepared datasets for domain-specific large language models in chemistry.</li>
-                             <li>Benchmarked foundation models on specialized chemistry tasks.</li>
-                        </ul>
-                     </div>
-
-                    <div class="cv-entry">
-                       <div class="entry-header">
-                            <span class="date">Jun 2022 – Sep 2023</span>
-                            <h3>Principal Engineer</h3>
-                            <p class="institution">QpiVolta Technologies Pvt. Ltd., Bangalore, India</p>
-                       </div>
-                       <ul>
-                            <li>Led development of <em>QpiVoltaET</em>, a cloud platform using neural networks for accelerated materials/molecule discovery.</li>
-                            <li>Developed high-throughput screening workflow for solid-state electrolytes using uncertainty-aware, physics-informed GNNs and DFT.</li>
-                       </ul>
-                    </div>
-
-                    <div class="cv-entry">
-                        <div class="entry-header">
-                            <span class="date">Jun 2021 – Jun 2022</span>
-                            <h3>Research Engineer</h3>
-                            <p class="institution">QpiAI Technologies Pvt. Ltd., Bangalore, India</p>
-                        </div>
-                        <ul>
-                            <li>Implemented end-to-end object detection pipelines using PyTorch.</li>
-                            <li>Developed DeepStream containers, custom GStreamer plugins (C++), and integrated ML models for real-time video analytics and safety applications.</li>
-                        </ul>
-                     </div>
-                </section>
-
-                <section id="research-experience">
-                    <h2><i class="fas fa-flask"></i> Research Experience</h2>
-                    <hr class="section-rule">
-
-                    <div class="cv-entry">
-                        <div class="entry-header">
-                             <span class="date">Mar 2021 – Oct 2021</span>
-                             <h3>EnergyNet: GDL for Structure-Property Prediction</h3>
-                             <p class="institution">Collaboration with Tata Consultancy Services (TCS Research)</p>
-                        </div>
-                        <p class="advisors">Advisor: <a href="https://www.sc.iitb.ac.in/~mayank/" target="_blank" rel="noopener noreferrer">Prof. Mayank Baranwal</a></p>
-                        <ul>
-                            <li>Developed a GNN model predicting adsorption energy from unrelaxed coordinates with performance comparable to benchmarks (<em>Top 7 in NeurIPS OC20 Competition</em>).</li>
-                        </ul>
-                     </div>
-
-                    <div class="cv-entry">
-                        <div class="entry-header">
-                             <span class="date">Jan 2020 – Dec 2020</span>
-                             <h3>Ab-initio Thermodynamics of Defects in Cu<sub>2</sub>O (MSc Thesis)</h3>
-                             <p class="institution">Indian Institute of Technology Bombay, Mumbai, India</p>
-                        </div>
-                        <p class="advisors">Advisors: <a href="https://www.ese.iitb.ac.in/faculty/balasubramaniam-kavaipatti" target="_blank" rel="noopener noreferrer">Prof. K R Balasubramaniam</a>, <a href="https://www.ese.iitb.ac.in/~dmonder/" target="_blank" rel="noopener noreferrer">Prof. D Monder</a></p>
-                        <ul>
-                            <li>Investigated intrinsic defects, dopants (alkali, H), and defect thermodynamics in Cu<sub>2</sub>O using DFT (Quantum ESPRESSO) and Boltzmann transport.</li>
-                            <li>Identified formation mechanisms of complex defects. (Thesis received highest grade)</li>
-                        </ul>
-                     </div>
-
-                     <div class="cv-entry">
-                        <div class="entry-header">
-                             <span class="date">Jan 2020 – Jun 2020</span>
-                             <h3>Tight Binding Models for Nanoscale Systems</h3>
-                             <p class="institution">Indian Institute of Technology Bombay, Mumbai, India</p>
-                        </div>
-                        <p class="advisors">Advisors: <a href="https://www.ee.iitb.ac.in/wiki/faculty/ashwin" target="_blank" rel="noopener noreferrer">Prof. Ashwin A. Tulapurkar</a>, <a href="http://cnqt-group.org" target="_blank" rel="noopener noreferrer">Prof. Bhaskaran Muralidharan</a></p>
-                        <ul>
-                            <li>Calculated band structures of graphene nanoribbons using tight binding.</li>
-                            <li>Modeled SSH chains (Python) to study topological phase transitions.</li>
-                        </ul>
-                     </div>
-
-                     <div class="cv-entry">
-                        <div class="entry-header">
-                             <span class="date">May 2017 – Jul 2017</span>
-                             <h3>Fabrication of SiC Schottky diode</h3>
-                             <p class="institution">Centre for Nanoscience, BDU, Tiruchirappalli, India</p>
-                        </div>
-                        <p class="advisors">Advisor: <a href="https://scholar.google.co.in/citations?user=JR7IrawAAAAJ&hl=en" target="_blank" rel="noopener noreferrer">Prof. K. Jeganathan</a></p>
-                        <ul>
-                             <li>Fabricated 4H/6H-SiC Schottky diodes using various deposition techniques.</li>
-                             <li>Characterized electrical parameters (barrier height, ideality factor, etc.).</li>
-                        </ul>
-                    </div>
-                </section>
-
-                <section id="publications">
-                    <h2><i class="fas fa-book-open"></i> Publications</h2>
-                    <hr class="section-rule">
-                    <ol class="publication-list">
-                        <li>
-                             <a href="https://arxiv.org/abs/2406.17295" target="_blank" rel="noopener noreferrer"><strong>MatText: Do Language Models Need More than Text & Scale for Materials Modeling?</strong></a><br>
-                             <strong>Nawaf Alampara</strong>, Santiago Miret, Kevin Maik Jablonka.<br>
-                             <em>Preprint (arXiv:2406.17295)</em>, 2024. (AI4Mat-Vienna 2024 spotlight)
-                        </li>
-                        <li>
-                             <a href="https://arxiv.org/abs/2404.01475" target="_blank" rel="noopener noreferrer"><strong>Are large language models superhuman chemists?</strong></a><br>
-                             Adrian Mirza*, <strong>Nawaf Alampara*</strong>, Sreekanth Kunchapu*, Martiño Ríos-García*, ..., Kevin Maik Jablonka (*Equal contribution).<br>
-                             <em>Preprint (arXiv:2404.01475)</em>, 2024. (Accepted at <em>Nature Chemistry</em>)
-                        </li>
-                         <li>
-                            <a href="https://arxiv.org/pdf/2411.16955" target="_blank" rel="noopener noreferrer"><strong>Probing the limitations of multimodal language models for chemistry and materials research</strong></a><br>
-                            <strong>Nawaf Alampara*</strong>, Santiago Miret*, Adrian Mirza*, ..., Kevin Maik Jablonka (*Equal contribution).<br>
-                            <em>Preprint (arXiv:2411.16955)</em>, 2024. (AI4Mat-NeurIPS 2024 spotlight, Under review at <em>Nature Computational Science</em>)
-                       </li>
-                        <li>
-                            <a href="https://iopscience.iop.org/article/10.1088/1361-6463/ad4a82/" target="_blank" rel="noopener noreferrer"><strong>Formation of an extended defect cluster in cuprous oxide</strong></a><br>
-                            G Aggarwal, S Chawla, AJ Singh, <strong>Nawaf Alampara</strong>, D S Monder and K R Balasubramaniam.<br>
-                            <em>Journal of Physics D: Applied Physics</em>, 2024.
-                       </li>
-                    </ol>
-                </section>
-
-                 <section id="patents">
-                    <h2><i class="fas fa-certificate"></i> Patents</h2>
-                    <hr class="section-rule">
-                    <ol class="publication-list">
-                        <li>
-                            <a href="https://patents.google.com/patent/US20240153595A1/en" target="_blank" rel="noopener noreferrer"><strong>System and method for performing accelerated molecular dynamics computer simulations with uncertainty-aware neural network</strong></a><br>
-                            Inventors: <strong>Nawaf Alampara</strong>, Aswanth Krishnan, Nagendra Nagaraja.<br>
-                            <em>US Patent Application US20240153595A1</em> (Filed 2023, Published 2024).
-                        </li>
-                        <li>
-                            <a href="https://patents.google.com/patent/US20240072257A1/en" target="_blank" rel="noopener noreferrer"><strong>Lithium iron phosphate (LFP) cathode active materials and method for deposition of the same</strong></a><br>
-                            Inventors: Manjunath Gangaiah, <strong>Nawaf Alampara</strong>, Aswanth Krishnan.<br>
-                            <em>US Patent Application US20240072257A1</em> (Filed 2023, Published 2024).
-                       </li>
-                        <li>
-                            <a href="https://patents.google.com/patent/US20230214553A1/en" target="_blank" rel="noopener noreferrer"><strong>System and method for sensor position optimization for autonomous vehicles</strong></a><br>
-                            Inventors: Amlan Mukherjee, Arun Sehrawat, Nagendra Nagaraja, Aswanth Krishnan, <strong>Nawaf Alampara</strong>, ...<br>
-                            <em>US Patent Application US20230214553A1</em> (Filed 2022, Published 2023).
-                        </li>
-                    </ol>
-                </section>
-
-            </div>
-
-            <div class="sidebar-column">
-                 <section id="summary">
-                    <h2><i class="fas fa-user"></i> Summary</h2>
-                    <hr class="section-rule">
-                    <p>
-                        PhD student at Friedrich-Schiller-Universität Jena advised by <a href="https://kjablonka.com/" target="_blank" rel="noopener noreferrer">Dr. Kevin Maik Jablonka</a>, focusing on machine learning for accelerated scientific discovery in chemistry and materials science. Research involves developing and evaluating foundation models (LLMs, GNNs, Multimodal Models) and building AI-driven workflows. Enjoys bridging the gap between novel research and practical engineering implementation.
-                    </p>
-                </section>
+                        **Nawaf Alampara**
+                     [pvt.nawaf@gmail.com](mailto:pvt.nawaf@gmail.com)
+                     [github.com/n0w0f](https://github.com/n0w0f) | [LinkedIn](https://www.linkedin.com/in/nawaf-a-78731612b/)
 
 
-                <section id="education">
-                    <h2><i class="fas fa-graduation-cap"></i> Education</h2>
-                    <hr class="section-rule">
+Summary
+===============================================================================
+I am second-year PhD student, working with [Dr. Kevin Maik Jablonka](https://kjablonka.com/). I'm building machine learning systems to speed up scientific research, and I love projects that involve both research and building the tooling that enables and accelerates that research. Lately, I’ve been analyzing general-purpose AI models/systems to understand their limitations in scientific applications—where they fail—and interpreting them to uncover why they fail. My goal is to use these insights to design AI systems that aren’t just impressive on benchmarks but truly impactful for advancing science and research.
 
-                    <div class="cv-entry">
-                        <div class="entry-header">
-                            <span class="date">Nov 2023 – Present</span>
-                            <h3>PhD Digital Chemistry / ML for Science</h3>
-                            <p class="institution">Friedrich-Schiller-Universität Jena, Germany</p>
-                        </div>
-                         <!-- <p class="advisors">Advisor: <a href="https://kjablonka.com/" target="_blank" rel="noopener noreferrer">Dr. Kevin Maik Jablonka</a></p> -->
-                    </div>
-
-                    <div class="cv-entry">
-                        <div class="entry-header">
-                             <span class="date">2018 – 2020</span>
-                             <h3>MSc Energy Science</h3>
-                             <p class="institution">Indian Institute of Technology Bombay, India</p>
-                        </div>
-                        <p>GPA: 8.55/10.0</p>
-                     </div>
-
-                     <div class="cv-entry">
-                        <div class="entry-header">
-                             <span class="date">2015 – 2018</span>
-                             <h3>BSc Physics</h3>
-                             <p class="institution">Birla Institute of Technology Mesra, India</p>
-                        </div>
-                        <p>GPA: 8.5/10.0</p>
-                     </div>
-                </section>
+<!-- PhD student at Friedrich-Schiller-Universität Jena advised by [Dr. Kevin Maik Jablonka](https://kjablonka.com/), focusing on machine learning for accelerated scientific discovery in chemistry and materials science. My research involves developing and evaluating foundation models (LLMs, GNNs, Multimodal Models) and building AI-driven workflows. I enjoy bridging the gap between novel research and practical engineering implementation. -->
 
 
-                <section id="research-interests">
-                    <h2><i class="fas fa-lightbulb"></i> Research Interests</h2>
-                    <hr class="section-rule">
-                     <ul>
-                        <li>Foundation Models for Science</li>
-                        <li>AI Agents & Automation Workflows</li>
-                        <li>Geometric Deep Learning</li>
-                        <li>Computational Materials Science</li>
-                        <li>Energy Materials</li>
-                        <li>Scientific Software Development</li>
-                    </ul>
-                </section>
+Education 🏫
+===================================================================
 
-                <section id="skills">
-                    <h2><i class="fas fa-cogs"></i> Skills</h2>
-                    <hr class="section-rule">
-                    <div class="skills-container">
-                        <span class="tag">Python</span>
-                        <span class="tag">PyTorch</span>
-                        <span class="tag">PyTorch Geometric</span>
-                        <span class="tag">HuggingFace</span>
-                        <span class="tag">PyTorch Lightning</span>
-                        <span class="tag">Git</span>
-                        <span class="tag">Docker</span>
-                        <span class="tag">FastAPI</span>
-                        <span class="tag">MLflow</span>
-                        <span class="tag">Flyte</span>
-                        <span class="tag">Quantum Espresso</span>
-                        <span class="tag">VASP</span>
-                        <span class="tag">ASE</span>
-                        <span class="tag">Pymatgen</span>
-                        <span class="tag">Golang</span>
-                        <span class="tag">JavaScript</span>
-                        <span class="tag">C++</span>
-                        <span class="tag">DeepStream</span>
-                        <span class="tag">CI/CD</span>
-                        <span class="tag">Linux/Bash</span>
-                        <span class="tag">HPC/Slurm</span>
-                        <span class="tag">OpenCV</span>
-                        <span class="tag">NumPy/SciPy</span>
-                    </div>
-                 </section>
+Nov 2023 – Present
+: **PhD Digital Chemistry / ML for Science**
+: <br>*Friedrich-Schiller-Universität Jena*, Jena, Germany
+: <br>Advisor: [Dr. Kevin Maik Jablonka](https://kjablonka.com/)
+: <br>Research Focus: Evaluation and development of foundation models for scientific applications, AI agents for discovery workflows.
 
-                <section id="honors-awards">
-                    <h2><i class="fas fa-trophy"></i> Honors and Awards</h2>
-                    <hr class="section-rule">
-                     <ul>
-                         <li><strong>Inspire Fellowship (SHE)</strong> - Dept. of Science and Technology, Govt. of India</li>
-                         <li><strong>Summer Research Fellowship (SRF 2016)</strong> - Indian Academy of Sciences</li>
-                     </ul>
-                </section>
+2018 – 2020
+: **MSc Energy Science**
+: <br>*Indian Institute of Technology Bombay*, Mumbai, India
+: <br>GPA: 8.55/10.0
+: <br>Thesis: *Defects and Dopants in Cu<sub>2</sub>O - A DFT study* (Received highest grade)
+: <br>Advisors: [Prof. K R Balasubramaniam](https://www.ese.iitb.ac.in/faculty/balasubramaniam-kavaipatti), [Prof. D Monder](https://www.ese.iitb.ac.in/~dmonder/)
 
-            </div>
-        </div>
-    </div>
-</body>
-</html>
+2015 – 2018
+: **BSc Physics**
+: <br>*Birla Institute of Technology Mesra*, Mesra, India
+: <br>GPA: 8.5/10.0
+
+
+Experience 
+===================================================================
+
+Nov 2023 – Present
+: **PhD Research Activities**
+: <br>*Friedrich-Schiller-Universität Jena*, Jena, Germany
+: <br>
+
+Nov 2023 – Apr 2024
+: **AI Research Contractor (Part-time)**
+: <br>*Stability AI*, Remote
+: <br>
+: + Prepared datasets for training domain-specific large language models in chemistry.
+
+Jun 2022 – Sep 2023
+: **Principal Engineer**
+: <br>*QpiVolta Technologies Pvt. Ltd.*, Bangalore, India
+: <br>
+: + Led development of *QpiVoltaET* cloud platform for accelerated materials discovery.
+: + Developed high-throughput screening workflow using GNNs and DFT.
+
+Jun 2021 – Jun 2022
+: **Research Engineer**
+: <br>*QpiAI Technologies Pvt. Ltd.*, Bangalore, India
+: <br>
+: + Implemented end-to-end object detection pipelines (PyTorch).
+: + Developed DeepStream containers, custom C++ GStreamer plugins, and ML models for video analytics.
+
+
+Publications
+===============================================================
+
+1.  **[MatText: Do Language Models Need More than Text & Scale for Materials Modeling?](https://arxiv.org/abs/2406.17295)**
+    <br>**Nawaf Alampara**, Santiago Miret, Kevin Maik Jablonka.
+    <br>*Preprint (arXiv:2406.17295)*, 2024. (*AI4Mat-Vienna 2024 spotlight*)
+
+2.  **[Are large language models superhuman chemists?](https://arxiv.org/abs/2404.01475)**
+    <br>Adrian Mirza\*, **Nawaf Alampara\***, Sreekanth Kunchapu\*, Martiño Ríos-García\*, ..., Kevin Maik Jablonka (\*Equal contribution).
+    <br>*Preprint (arXiv:2404.01475)*, 2024. (Accepted at *Nature Chemistry*)
+
+3.  **[Probing the limitations of multimodal language models for chemistry and materials research](https://arxiv.org/pdf/2411.16955)**
+    <br>**Nawaf Alampara\***, Santiago Miret\*, Adrian Mirza\*, ..., Kevin Maik Jablonka (\*Equal contribution).
+    <br>*Preprint (arXiv:2411.16955)*, 2024. (*AI4Mat-NeurIPS 2024 spotlight*, Under review at *Nature Computational Science*)
+
+4.  **[Formation of an extended defect cluster in cuprous oxide](https://iopscience.iop.org/article/10.1088/1361-6463/ad4a82/)**
+    <br>G Aggarwal, S Chawla, AJ Singh, **Nawaf Alampara**, D S Monder and K R Balasubramaniam.
+    <br>*Journal of Physics D: Applied Physics*, 2024.
+
+
+Patents
+============================================================================
+
+1. **[System and method for performing accelerated molecular dynamics computer simulations with uncertainty-aware neural network](https://patents.google.com/patent/US20240153595A1/en)**
+   <br>Inventors: **Nawaf Alampara**, Aswanth Krishnan, Nagendra Nagaraja.
+   <br>*US Patent Application US20240153595A1* (Filed 2023, Published 2024).
+
+2. **[Lithium iron phosphate (LFP) cathode active materials and method for deposition of the same](https://patents.google.com/patent/US20240072257A1/en)**
+   <br>Inventors: Manjunath Gangaiah, **Nawaf Alampara**, Aswanth Krishnan.
+   <br>*US Patent Application US20240072257A1* (Filed 2023, Published 2024).
+
+3. **[System and method for sensor position optimization for autonomous vehicles](https://patents.google.com/patent/US20230214553A1/en)**
+   <br>Inventors: Amlan Mukherjee, Arun Sehrawat, Nagendra Nagaraja, Aswanth Krishnan, **Nawaf Alampara**, ...
+   <br>*US Patent Application US20230214
+
+
+
+Research Projects
+===================================================================
+
+Mar 2021 – Oct 2021
+: **EnergyNet: Geometric deep learning model for Structure-Property Prediction**
+: <br>*Collaboration with Tata Consultancy Services (TCS Research)*, Remote
+: <br>Advisor: [Prof. Mayank Baranwal](https://www.sc.iitb.ac.in/~mayank/)
+: <br>Developed a GNN model predicting adsorption energy (*Top 7 in NeurIPS OC20 Competition*).
+
+Jan 2020 – Dec 2020
+: **Ab-initio Thermodynamics of Defects in Cu<sub>2</sub>O (MSc Thesis)**
+: <br>*Indian Institute of Technology Bombay*, Mumbai, India
+: <br>Advisors: [Prof. K R Balasubramaniam](https://www.ese.iitb.ac.in/faculty/balasubramaniam-kavaipatti), [Prof. D Monder](https://www.ese.iitb.ac.in/~dmonder/)
+: <br>Investigated intrinsic defects, dopants (alkali, H), and defect thermodynamics in Cu<sub>2</sub>O using DFT (Quantum ESPRESSO) and Boltzmann transport. Identified formation mechanisms of complex defects.
+
+Jan 2020 – Jun 2020
+: **Tight Binding Models for Nanoscale Systems**
+: <br>*Indian Institute of Technology Bombay*, Mumbai, India
+: <br>Advisors: [Prof. Ashwin A. Tulapurkar](https://www.ee.iitb.ac.in/wiki/faculty/ashwin), [Prof. Bhaskaran Muralidharan](http://cnqt-group.org)
+: <br>Calculated band structures of graphene nanoribbons. Modeled SSH chains (Python).
+
+May 2017 – Jul 2017
+: **Fabrication of SiC Schottky diode**
+: <br>*Centre for Nanoscience, BDU*, Tiruchirappalli, India
+: <br>Advisor: [Prof. K. Jeganathan](https://scholar.google.co.in/citations?user=JR7IrawAAAAJ&hl=en)
+: <br>Fabricated 4H/6H-SiC Schottky diodes and characterized electrical parameters.
+
+
+Research Interests
+===============================================================================
+
+*   Foundation Models for Science (Evaluation & Development)
+*   AI Agents & Automation Workflows for Scientific Discovery
+*   Geometric Deep Learning for Molecules & Materials
+*   Computational Materials Science (DFT, MD)
+*   Energy Materials (Electrolytes, Catalysts)
+*   Scientific Software Development & MLOps
+
+
+Skills
+===============================================================================
+
+Programming
+: Python (Primary), Golang, JavaScript, C++
+
+ML/AI
+: PyTorch, PyTorch Geometric, HuggingFace, PyTorch Lightning, TensorFlow (Basic), Scikit-learn, OpenCV, NVIDIA DeepStream
+
+DevOps/Tools
+: Git/GitHub, Docker, FastAPI, MLflow, Flyte, CI/CD, Bash/Linux, Slurm (HPC)
+
+Scientific Computing
+: Quantum ESPRESSO, VASP, ASE, Pymatgen, NumPy/SciPy/Pandas
+
+
+Honors and Awards
+==================================================================
+
+*   **Inspire Fellowship (SHE)** - Awarded by Dept. of Science and Technology, Govt. of India
+*   **Summer Research Fellowship (SRF 2016)** - Awarded by Indian Academy of Sciences
+
+
+<!-- Custom Styling and Options (like McGuire example) -->
+<style>dt { width: 110px; font-family: arial} dd { padding-bottom: 1px }
+.md h1:before, .md h2:before { content: none }
+.md ul li.plus { list-style-type: none; margin-left: -40px; padding-bottom: 10px}
+.md table.table { margin-left: -15px; padding-bottom: 20px }
+.md table.table tr { vertical-align: top }
+.md table.table th { color: #000; background: none; border: none; padding-bottom: 2px }
+.md table.table tr:nth-child(even) { background: none }
+.md table.table td { background: none; border: none; padding-bottom: 0px; padding-top: 2px }
+.md table {page-break-inside: auto}
+em.asterisk { font-style: normal; font-weight: bold }
+
+/* Adjustments for Skills section */
+section#skills dt { font-weight: bold; width: auto; float: none; margin-right: 0; margin-bottom: 3px; }
+section#skills dd { margin-left: 15px; padding-left: 0; }
+section#skills dd br { display: none; } /* Remove potential line breaks */
+</style>
+<script>markdeepOptions = {definitionStyle:'short', tocStyle:'none'} /* Using 'none' for ToC in CV */</script>
+
+<!-- Markdeep Footer -->
+<!-- Markdeep: --><style class="fallback">body{visibility:hidden;white-space:pre;font-family:monospace}</style><script src="markdeep.min.js"></script><script src="https://morgan3d.github.io/markdeep/latest/markdeep.min.js?"></script><script>window.alreadyProcessedMarkdeep||(document.body.style.visibility="visible")</script>
+
+--- END OF FILE cv_eample.md.html ---
