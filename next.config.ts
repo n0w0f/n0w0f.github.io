@@ -7,6 +7,14 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "images.unsplash.com",
       },
+      {
+        protocol: "https",
+        hostname: "lamalab.org",
+      },
+      {
+        protocol: "https",
+        hostname: "github.com",
+      },
     ],
   },
 };
