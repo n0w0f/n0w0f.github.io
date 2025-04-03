@@ -8,6 +8,7 @@ export interface Publication {
   bibtex?: string;
   tldr?: string;
   imageUrl?: string;
+  leaderboardUrl?: string;
   award?: string;
 }
 
@@ -30,7 +31,8 @@ export const publicationData: Publication[] = [
     authors: "Adrian Mirza, Nawaf Alampara, et al.",
     paperUrl: "https://arxiv.org/abs/2404.01475",
     codeUrl: "https://github.com/lamalab-org/chem-bench",
-    imageUrl: "https://github.com/n0w0f/n0w0f.github.io/tree/main/public/static/cb.png",
+    imageUrl: "https://github.com/n0w0f/n0w0f.github.io/blob/main/public/static/cb.png",
+    leaderboardUrl: "https://huggingface.co/spaces/jablonkagroup/ChemBench-Leaderboard",
     tldr: "First comprehensive benchmark for chemistry-specific AI capabilities, evaluating chemical knowledge, intuition, and reasoning of LLMs against human chemists.",
   },
   {
@@ -39,7 +41,8 @@ export const publicationData: Publication[] = [
     title: "Probing the limitations of multimodal language models for chemistry and materials research",
     authors: "Nawaf Alampara, et al.",
     paperUrl: "https://arxiv.org/pdf/2411.16955",
-    imageUrl: "https://github.com/n0w0f/n0w0f.github.io/tree/main/public/static/macbench.png",
+    imageUrl: "https://github.com/n0w0f/n0w0f.github.io/blob/main/public/static/macbench.png",
+    leaderboardUrl: "https://huggingface.co/spaces/jablonkagroup/MaCBench-Leaderboard",
     tldr: "Multimodal benchmark for chemistry/materials science for AI with ablations to interpret the limitations",
     award: "⭐ spotlight (oral)",
   },
