@@ -36,7 +36,7 @@ export const aboutMe: AboutMe = {
   linkedinUsername: "n0w0f",
   twitterUsername: "Iam_Nawaf_",
   // blogUrl: "https://",
-  cvUrl: "https://",
+  cvUrl: "https://n0w0f.github.io/cv/index.html",
   institutionUrl: "https://www.uni-jena.de/en",
   // altName: "",
   // secretDescription: "I like dogs.",
