@@ -10,21 +10,53 @@ export interface Experience {
 
 export const experienceData: Experience[] = [
   {
-    date: "Summer 2023",
-    title: "Research Intern",
-    company: "DeepMind",
-    description:
-      "Developed novel algorithms for causal structure learning in reinforcement learning settings",
-    advisor: "Peter Wang",
-    companyUrl: "https://deepmind.com",
+    date: "Nov 2023 - Present",
+    title: "PhD Researcher",
+    company: "Friedrich-Schiller-Universität Jena",
+    // description:
+    //   "Developing benchmarking tools and datasets to finetune and evaluate LLMs' performance in material science. Building evaluation frameworks to assess LLMs' chemical reasoning, intuition, and knowledge against human experts. Creating multi-modal AI benchmarks for scientific data extraction, visual comprehension, and laboratory safety assessment.",
+    advisor: "Dr. Kevin Maik Jablonka",
+    companyUrl: "https://www.uni-jena.de/en",
   },
   {
-    date: "Summer 2022",
-    title: "Research Intern",
-    company: "Google Research",
+    date: "Nov 2023 - Apr 2024",
+    title: "AI Research Contractor (Part-time)",
+    company: "Stability AI",
     description:
-      "Worked on improving robustness of large language models to distribution shifts",
-    manager: "Elise Brown",
-    companyUrl: "https://google.com",
+      "Dataset curation | Benchmarking",
+    companyUrl: "https://stability.ai",
   },
+  {
+    date: "Jun 2022 - Sept 2023",
+    title: "Principal Engineer",
+    company: "QpiVolta Technologies",
+    description:
+      "Material simulation using geometric deep learning models | Software development",
+    companyUrl: "https://qpivolta.tech",
+  },
+  {
+    date: "Jun 2021 - Jun 2022",
+    title: "Research Engineer",
+    company: "QpiAI Technologies",
+    description:
+      "Real-time video analytics | Computer vision",
+    companyUrl: "https://qpiai.tech",
+  },
+  // {
+  //   date: "Jun 2022 - Sept 2023",
+  //   title: "Principal Engineer",
+  //   company: "QpiVolta Technologies",
+  //   description:
+  //     "Led the development of a cloud-based platform for material simulation using geometric deep learning models. Built uncertainty-aware, physics-informed GNN workflows for high-throughput solid-state electrolyte screening.",
+  //   companyUrl: "https://qpivolta.tech",
+  // },
+  // {
+  //   date: "Jun 2021 - Jun 2022",
+  //   title: "Research Engineer",
+  //   company: "QpiAI Technologies",
+  //   description:
+  //     "Developed DeepStream containers and C++ GStreamer plugins for real-time video analytics. Integrated monocular depth estimation models into safety violation detection pipelines. Implemented object detection micro-services for video analytics platforms.",
+  //   companyUrl: "https://qpiai.tech",
+  // },
 ];
+
