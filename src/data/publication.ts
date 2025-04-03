@@ -20,7 +20,7 @@ export const publicationData: Publication[] = [
     paperUrl: "https://arxiv.org/abs/2406.17295v2",
     codeUrl: "https://github.com/lamalab-org/MatText",
     imageUrl: "https://github.com/lamalab-org/mattext/raw/main/docs/static/logo.png",
-    award: "⭐ spotlight(oral)",
+    award: "⭐ spotlight (oral)",
     tldr: "Revealing Transformer models' (IFT and trained from scratch) limitations in capturing 3D geometric information crucial for materials modeling.",
   },
   {
@@ -30,6 +30,7 @@ export const publicationData: Publication[] = [
     authors: "Adrian Mirza, Nawaf Alampara, et al.",
     paperUrl: "https://arxiv.org/abs/2404.01475",
     codeUrl: "https://github.com/lamalab-org/chem-bench",
+    imageUrl: "https://github.com/n0w0f/n0w0f.github.io/tree/main/public/static/cb.png",
     tldr: "First comprehensive benchmark for chemistry-specific AI capabilities, evaluating chemical knowledge, intuition, and reasoning of LLMs against human chemists.",
   },
   {
@@ -38,8 +39,9 @@ export const publicationData: Publication[] = [
     title: "Probing the limitations of multimodal language models for chemistry and materials research",
     authors: "Nawaf Alampara, et al.",
     paperUrl: "https://arxiv.org/pdf/2411.16955",
+    imageUrl: "https://github.com/n0w0f/n0w0f.github.io/tree/main/public/static/macbench.png",
     tldr: "Multimodal benchmark for chemistry/materials science for AI with ablations to interpret the limitations",
-    award: "⭐ spotlight(oral)",
+    award: "⭐ spotlight (oral)",
   },
   {
     year: "2024",
