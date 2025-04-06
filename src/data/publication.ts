@@ -26,7 +26,7 @@ export const publicationData: Publication[] = [
   },
   {
     year: "2024",
-    conference: "Nature Chemistry",
+    conference: "",
     title: "Are large language models superhuman chemists?",
     authors: "Adrian Mirza, Nawaf Alampara, et al.",
     paperUrl: "https://arxiv.org/abs/2404.01475",
