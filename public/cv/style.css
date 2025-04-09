@@ -265,4 +265,25 @@ section h2 i {
         margin-right: 0;
         margin-bottom: 5px;
     }
+
+    
 }
+
+/* Example of custom styling */
+#download-cv-button {
+    display: inline-block;
+    padding: 8px 15px;
+    background-color: #4a5568; /* Change to match your site's color scheme */
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    transition: background-color 0.3s;
+  }
+  
+  #download-cv-button:hover {
+    background-color: #2d3748;
+  }
+
+
