@@ -32,4 +32,9 @@ export const portfolioData: Portfolio[] = [
     technologies: ["Python", "PyTorch", "PyG"],
     projectUrl: "https://opencatalystproject.org/challenge.html",
   },
+  {
+    title: "Defects and Dopants in Cu2O - DFT study",
+    description: "Identifying potential dopants for improving carrier transport properties of Cu2O via neutralizing mobility limiting trap states or by tuning electronic structures.",
+    technologies: ["DFT", "QuantumEspresso", "HPC"],
+  }
 ];
