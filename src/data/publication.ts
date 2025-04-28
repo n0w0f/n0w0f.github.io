@@ -54,6 +54,14 @@ export const publicationData: Publication[] = [
     paperUrl: "https://iopscience.iop.org/article/10.1088/1361-6463/ad4a82/meta",
     tldr: "Characterization of intrinsic defects and dopants in Cu₂O, leading to discovery and experimental validation of new defect formation.",
   },
+  {
+    year: "2025",
+    paperUrl: "https://arxiv.org/abs/2503.10837",
+    title: "Lessons from the trenches on evaluating machine-learning systems in materials science",
+    authors: "Nawaf Alampara, Mara Schilling-Wilhelmi, Kevin Maik Jablonka",
+    tldr: "Thoughts on evaluating ML systems in materials science",
+    conference: ""
+  }
 ];
 
 // export const publicationData: Publication[] = [
