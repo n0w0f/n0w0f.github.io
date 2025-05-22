@@ -26,10 +26,10 @@ export const publicationData: Publication[] = [
   },
   {
     year: "2024",
-    conference: "",
-    title: "Are large language models superhuman chemists?",
-    authors: "Adrian Mirza, Nawaf Alampara, et al.",
-    paperUrl: "https://arxiv.org/abs/2404.01475",
+    conference: "Nature Chemistry",
+    title: "A framework for evaluating the chemical knowledge and reasoning abilities of large language models against the expertise of chemists",
+    authors: "Adrian Mirza, Nawaf Alampara, ..,Kevin Maik Jablonka",
+    paperUrl: "hhttps://www.nature.com/articles/s41557-025-01815-x",
     codeUrl: "https://github.com/lamalab-org/chem-bench",
     imageUrl: "/static/cb_logo.png",
     leaderboardUrl: "https://huggingface.co/spaces/jablonkagroup/ChemBench-Leaderboard",
@@ -47,12 +47,12 @@ export const publicationData: Publication[] = [
     award: "⭐ spotlight (oral)",
   },
   {
-    year: "2024",
-    conference: "Journal of Physics D: Applied Physics",
-    title: "Formation of an extended defect cluster in cuprous oxide",
-    authors: "G Aggarwal, S Chawla, AJ Singh, Nawaf Alampara, et al.",
-    paperUrl: "https://iopscience.iop.org/article/10.1088/1361-6463/ad4a82/meta",
-    tldr: "Characterization of intrinsic defects and dopants in Cu₂O, leading to discovery and experimental validation of new defect formation.",
+    year: "2025",
+    paperUrl: "https://arxiv.org/abs/2505.12534",
+    title: "ChemPile: A 250GB Diverse and Curated Dataset for Chemical Foundation Models",
+    authors: "Adrian Mirza, Nawaf Alampara, Martiño Ríos-García,.., Michael Pieler, Kevin Maik Jablonka",
+    tldr: "Thoughts on evaluating ML systems in materials science",
+    conference: ""
   },
   {
     year: "2025",
@@ -61,7 +61,16 @@ export const publicationData: Publication[] = [
     authors: "Nawaf Alampara, Mara Schilling-Wilhelmi, Kevin Maik Jablonka",
     tldr: "Thoughts on evaluating ML systems in materials science",
     conference: ""
-  }
+  },
+  {
+    year: "2024",
+    conference: "Journal of Physics D: Applied Physics",
+    title: "Formation of an extended defect cluster in cuprous oxide",
+    authors: "G Aggarwal, S Chawla, AJ Singh, Nawaf Alampara, et al.",
+    paperUrl: "https://iopscience.iop.org/article/10.1088/1361-6463/ad4a82/meta",
+    tldr: "Characterization of intrinsic defects and dopants in Cu₂O, leading to discovery and experimental validation of new defect formation.",
+  },
+
 ];
 
 // export const publicationData: Publication[] = [
