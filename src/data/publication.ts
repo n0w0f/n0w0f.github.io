@@ -14,6 +14,17 @@ export interface Publication {
 
 export const publicationData: Publication[] = [
   {
+    year: "2025",
+    conference: "Nature Chemistry",
+    title: "A framework for evaluating the chemical knowledge and reasoning abilities of large language models against the expertise of chemists",
+    authors: "Adrian Mirza, Nawaf Alampara, ..,Kevin Maik Jablonka",
+    paperUrl: "hhttps://www.nature.com/articles/s41557-025-01815-x",
+    codeUrl: "https://github.com/lamalab-org/chem-bench",
+    imageUrl: "/static/cb_logo.png",
+    leaderboardUrl: "https://huggingface.co/spaces/jablonkagroup/ChemBench-Leaderboard",
+    tldr: "First comprehensive benchmark for chemistry-specific AI capabilities, evaluating chemical knowledge, intuition, and reasoning of LLMs against human chemists.",
+  },
+  {
     year: "2024",
     conference: "AI4Mat-Vienna 2024",
     title: "MatText: Do Language Models Need More than Text & Scale for Materials Modeling?",
@@ -23,17 +34,6 @@ export const publicationData: Publication[] = [
     imageUrl: "https://github.com/lamalab-org/mattext/raw/main/docs/static/logo.png",
     award: "⭐ spotlight (oral)",
     tldr: "Revealing Transformer models' (IFT and trained from scratch) limitations in capturing 3D geometric information crucial for materials modeling.",
-  },
-  {
-    year: "2024",
-    conference: "Nature Chemistry",
-    title: "A framework for evaluating the chemical knowledge and reasoning abilities of large language models against the expertise of chemists",
-    authors: "Adrian Mirza, Nawaf Alampara, ..,Kevin Maik Jablonka",
-    paperUrl: "hhttps://www.nature.com/articles/s41557-025-01815-x",
-    codeUrl: "https://github.com/lamalab-org/chem-bench",
-    imageUrl: "/static/cb_logo.png",
-    leaderboardUrl: "https://huggingface.co/spaces/jablonkagroup/ChemBench-Leaderboard",
-    tldr: "First comprehensive benchmark for chemistry-specific AI capabilities, evaluating chemical knowledge, intuition, and reasoning of LLMs against human chemists.",
   },
   {
     year: "2024",
