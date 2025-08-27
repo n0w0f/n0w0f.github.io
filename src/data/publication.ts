@@ -26,6 +26,17 @@ export const publicationData: Publication[] = [
   },
   {
     year: "2024",
+    conference: "Nature Computational Science",
+    title: "Probing the limitations of multimodal language models for chemistry and materials research",
+    authors: "Nawaf Alampara, ..,Kevin Maik Jablonka",
+    paperUrl: "https://www.nature.com/articles/s43588-025-00836-3",
+    imageUrl: "/static/mb_logo.png",
+    leaderboardUrl: "https://huggingface.co/spaces/jablonkagroup/MaCBench-Leaderboard",
+    tldr: "Multimodal benchmark for chemistry/materials science for AI with ablations to interpret the limitations",
+    award: "⭐ Neurips AI4Mat",
+  },
+  {
+    year: "2024",
     conference: "AI4Mat-Vienna 2024",
     title: "MatText: Do Language Models Need More than Text & Scale for Materials Modeling?",
     authors: "Nawaf Alampara, Santiago Miret, Kevin Maik Jablonka",
@@ -36,31 +47,23 @@ export const publicationData: Publication[] = [
     tldr: "Revealing Transformer models' (IFT and trained from scratch) limitations in capturing 3D geometric information crucial for materials modeling.",
   },
   {
-    year: "2024",
-    conference: "AI4Mat-NeurIPS 2024",
-    title: "Probing the limitations of multimodal language models for chemistry and materials research",
-    authors: "Nawaf Alampara, et al.",
-    paperUrl: "https://arxiv.org/pdf/2411.16955",
-    imageUrl: "/static/mb_logo.png",
-    leaderboardUrl: "https://huggingface.co/spaces/jablonkagroup/MaCBench-Leaderboard",
-    tldr: "Multimodal benchmark for chemistry/materials science for AI with ablations to interpret the limitations",
-    award: "⭐ spotlight (oral)",
-  },
-  {
     year: "2025",
     paperUrl: "https://arxiv.org/abs/2505.12534",
     title: "ChemPile: A 250GB Diverse and Curated Dataset for Chemical Foundation Models",
     authors: "Adrian Mirza, Nawaf Alampara, Martiño Ríos-García,.., Michael Pieler, Kevin Maik Jablonka",
-    tldr: "Thoughts on evaluating ML systems in materials science",
+    tldr: "Biggest multimodal dataset for chemical foundation models.",
+    imageUrl: "/static/chempile_logo.png",
     conference: ""
   },
   {
     year: "2025",
-    paperUrl: "https://arxiv.org/abs/2503.10837",
+    paperUrl: "https://www.sciencedirect.com/science/article/pii/S0927025625003842",
     title: "Lessons from the trenches on evaluating machine-learning systems in materials science",
     authors: "Nawaf Alampara, Mara Schilling-Wilhelmi, Kevin Maik Jablonka",
+    imageUrl: "/static/mat_review.jpg",
     tldr: "Thoughts on evaluating ML systems in materials science",
-    conference: ""
+    conference: "Computational Materials Science",
+    
   },
   {
     year: "2024",
