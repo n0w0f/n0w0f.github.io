@@ -1,52 +1,274 @@
               <meta charset="utf-8" emacsmode="-*- markdown -*-">
 
-                            **Google summer of code Documentation**
+                            **Benchmarking Algorithmic Reasoning Capabilities of Frontier Models in Scientific Tasks (WIP)**
 
-Welcome to Markdeep. It's the simple way to write plain text with
-_style_. From https://casual-effects.com/markdeep
 
-Section
+
+Introduction
 ===============================================================================
+Evaluating frontier models on scientific tasks is challenging because solving Scientific tasks often require a blend of domain-specific knowledge, logical reasoning (identifying the set of steps that the llm has to perform based on the given information and prior knowledge), and multi-step algorithmic execution capabilities. For example consider identifying the phase of a material from XRD pattern. The domain knowledge the LLM has to possess here is the hkl rules for different types of crystal structure.
+The reasoning LLM has to do is to infer that is the set of steps it has to take to solve this problem, from the set of given peaks it has to identify highest peak, take ratio between peaks etc.
+And the execution capability is the ability to execute the plan developed in reasoning process (thinking process) step-by-step.
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-aliquip ex ea commodo consequat.
 
-\begin{equation}
-\iint xy^2\,dx\,dy = \frac{1}{6}x^2y^3
-\end{equation}
+Existing benchmarks often don't distinguish between these factors, making it difficult to determine if a model fails due to a lack of specialized knowledge or an inability to identify and or execute that knowledge logically.
+The "knowledge gap" often obscures the "reasoning gap" \cite{bang2023multi}. 
+An LLM might fail a scientific reasoning task due to a lack of specific factual knowledge, or it might possess the knowledge but lack the capability to correctly apply a multi-step algorithm or perform accurate computation based on that knowledge.
+Furthermore, the inherent complexity of the algorithmic steps required to solve a problem is often overlooked in current evaluations.
+A task requiring five sequential calculations is fundamentally different from one requiring fifty, even if the underlying scientific principles are the same.
 
-Duis aute irure dolor in
-reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-pariatur.
 
-\begin{equation}
-	u=\frac{-y}{x^2+y^2}\,,\quad
-	v=\frac{x}{x^2+y^2}\,,\quad\text{and}\quad
-	w=0\,.
-\end{equation}
 
-Subsection
+This project attempts to address these limitations by introducing a novel benchmarking approach. 
+Our primary motivation is to abstract away the domain-specific knowledge component as much as possible, focusing instead on the LLM's ability to execute a series of logical and computational steps—an "algorithm"—once the problem has been conceptually understood. 
+A second, equally important motivation is to systematically evaluate how LLM performance degrades as the inherent algorithmic complexity of a task increases.
+We posit that by introducing a "scalable variable" within each task, we can precisely control the computational burden and observe the resilience limits of different LLM architectures and prompting strategies.
+
+
+The methodology presented herein involves:
+
+1. Designing a diverse set of ten scientific-algorithmic tasks, each with a known solution complexity that can be parametrically varied.
+2. Evaluating the performance of Google's \geminiflash\ and \geminipro\ models, both with and without a "chain-of-thought" or "thinking process" prompting strategy, across varying levels of algorithmic complexity for each task.
+3. Complementing these evaluations with an analysis of performance when code execution is assumed, i.e., when the model only needs to provide the logic or algorithm that would then be executed by an external interpreter, to further isolate reasoning from direct computation.
+
+
+This study aims to provide a more nuanced understanding of \llm\ capabilities in scientific algorithmic reasoning, offering valuable insights for developing more robust and reliable AI systems for scientific applications.
+
+Methodology
+=================================================================================
+
+Framework Design Principles
 -------------------------------------------------------------------------------
 
-Excepteur sint occaecat cupidatat non proident, sunt in
-culpa qui officia deserunt mollit anim id est laborum.
+Our benchmark framework implements four core design principles addressing limitations in current evaluation methods:
 
-\begin{equation}
-	\begin{bmatrix}
-		1 & x & 0 \\
-		0 & 1 & -1
-	\end{bmatrix}\begin{bmatrix}
-		1  \\
-		y  \\
-		1
-	\end{bmatrix}
-	=\begin{bmatrix}
-		1+xy  \\
-		y-1
-	\end{bmatrix}.
-\end{equation}
+1. *Knowledge-Reasoning Separation:* Tasks require minimal domain-specific knowledge while demanding sophisticated algorithmic execution.
+
+2. *Contamination Resistance:* All tasks generate novel instances through parameterized algorithms, ensuring no specific problem appears in training data. Problem structure remains constant while numerical parameters vary.
+
+3. *Complexity Tunability:* Each task includes scalable difficulty parameters enabling systematic exploration of performance degradation patterns. Complexity scaling follows theoretical principles from computational complexity theory.
+
+4. *Verifiable Execution:* All tasks have algorithmically deterministic solutions with step-by-step verification, eliminating ambiguity in correctness assessment.
+
+<style>
+table { 
+    font-size: 0.5em; 
+    width: 100%; 
+    table-layout: fixed;
+    margin: 0 auto;
+}
+</style>
+Task | STEM Domain | Algorithm Type | Variable | Complexity | Key Challenge | Scientific Relevance
+-----|-------------|----------------|----------|------------|---------------|------------------------
+Many Body Energy Computation | Physics | Arithmetic | Particles (N) | O(N²) | Pairwise interactions scale quadratically | Molecular interactions, lattice energy
+Peak Identification | Chemistry/ Materials | Sequence Processing | Peaks (N) | O(N log N) | Coordinate sorting with overlap detection | Spectroscopy (XRD, NMR) analysis
+Diffusion Pathway | Materials Science | Graph Traversal | Grid (M×N) | O(MN) | BFS pathfinding with defect constraints | Surface diffusion, catalysis
+State Machine Traversal | Computer Science | Sequence Processing | String length (L) | O(L) | Linear state transition tracking | Reaction pathways, phase transitions
+DNA Transcription | Biology/ Chemistry | Sequence Processing | DNA length (N) | O(N) | Codon processing with stop rules | Protein synthesis, biomaterials
+Resistor Network Simplification | Physics/ Engineering | Arithmetic | Resistors (N) | O(N) | Recursive parsing of nested structures | Conductivity in nanomaterials
+Radioactive Decay Chain | Physics/ Chemistry | Sequence Processing | Chain length (L) | O(L) | Multi-step decay rule application | Nuclear chemistry, dating methods
+Tree Traversal | Computer Science | Graph Traversal | Nodes (N) | O(N) | Recursive navigation with order accuracy | Chemical graph structures
+Kinematic Motion | Physics | Arithmetic | Phases (N) | O(N) | Sequential velocity updates | Material particle dynamics
+Knights and Knaves | Logic | Logical Deduction | Islanders (N) | O(2^N) | Exponential constraint satisfaction | Logical hypothesis testing
+[Table [stem_tasks]: Computational tasks across STEM domains with algorithmic complexity analysis.]
+
+
+
+
+Tasks
+-------------------------------------------------------------------------------
+<!-- 
+Task | STEM Domain | Algorithm Type | Scalable Variable | Algorithmic Complexity | Description of Complexity | Chemistry/Material Science Relevance
+-----|-------------|----------------|-------------------|------------------------|---------------------------|------------------------------------
+Many Body Energy Computation | Physics | Arithmetic | Number of particles (N) | O(N²) | Computes pairwise interaction energies for N particles, requiring N(N-1)/2 distance calculations and energy summations (distance × (E_A + E_B)) for pairs within 5.0 Å. Simple for N=2 (1 pair), complex for N=50 (1225 pairs) due to quadratic scaling and conditional checks. | Models molecular interactions (e.g., Lennard-Jones-like), relevant to chemical systems and material properties (e.g., crystal lattice energy).
+Peak Identification | Chemistry /Material Science | Sequence Processing | Number of peaks (N) | O(N log N) | Sorts N 2D coordinates (position, intensity) by position or intensity. Simple for N=5 (quick sort), moderate for N=100 due to sorting cost. Additional complexity (e.g., overlapping peaks) could increase to O(N²) with preprocessing. | Core to spectroscopy (e.g., XRD, NMR), used in material characterization and chemical analysis.
+Diffusion Pathway (Shortest Path on a Grid) | Material Science | Graph Traversal | Grid size (M×N) | O(MN) | Uses BFS to find the shortest path on an M×N grid, avoiding defects. Moderate for 5×5 grid (25 nodes), complex for 100×100 (10,000 nodes) due to large search space and defect constraints. | Models atom diffusion on crystal surfaces, key to material science (e.g., catalysis, surface defects).
+Finite State Machine Traversal | Computer Science | Sequence Processing | Length of input string (L) or number of states (S) | O(L) | Processes L input characters through S states (e.g., S=4). Simple for L=5, complex for L=1000 due to linear tracking of state transitions. Fixed S=4 keeps transition table manageable (4×3=12 transitions for alphabet {a, b, c}). | Indirectly relevant to modeling chemical reaction pathways or material phase transitions as state machines.
+DNA Transcription and Translation | Biology /Chemistry | Sequence Processing | DNA sequence length (N) | O(N) | Transcribes N bases to mRNA and translates to amino acids (N/3 codons). Simple for N=12 (4 codons), complex for N=1000 with introns/stop codons due to sequence processing and rule application (base pairing, codon lookups). | Protein synthesis, relevant to protein chemistry and biomaterial design (e.g., protein-based materials).
+Resistor Network Simplification | Physics /Engineering | Arithmetic | Number of resistors (N) | O(N) | Combines N resistors via series/parallel rules, with recursive parsing for nested structures (up to 5 levels for N>20). Moderate for N=3 (1–2 levels), complex for N=10 (3–5 levels) due to parsing and reciprocal calculations. | Relevant to material science via resistor material properties (e.g., conductivity in nanomaterials).
+Radioactive Decay Chain | Physics /Chemistry | Sequence Processing | Decay chain length (L) | O(L) | Applies L decay steps (alpha, beta, gamma, theta) to track Z and A. Moderate for L=3, complex for L=15 with hypothetical decays (e.g., theta: Z−1, A−4), requiring precise arithmetic and rule switching. | Nuclear chemistry, relevant to radiometric dating and material stability (e.g., isotopes in materials).
+Tree Traversal | Computer Science | Graph Traversal | Number of nodes (N) | O(N) | Traverses N nodes in a binary tree (pre-order, in-order, or post-order). Simple for N=5, complex for N=50 due to recursive navigation and order accuracy. | Indirectly relevant to chemistry via molecular tree structures (e.g., chemical graphs).
+Kinematic Motion Calculation | Physics | Arithmetic | Number of acceleration phases (N) | O(N) | Applies kinematic equations (v = u + at) for N phases. Simple for N=2, moderate for N=10 due to sequential velocity updates, but remains linear and straightforward. | Limited connection to chemistry/material science, though applicable to material dynamics (e.g., particle motion).
+Knights and Knaves Puzzle | Logic | Logical Deduction | Number of islanders /statements (N) | O(2^N) | Solves a constraint satisfaction problem with N islanders, testing truth/lie consistency. Complex even for N=2 due to combinatorial logic; N=5 is highly challenging due to exponential possibilities. | Minimal direct connection to chemistry/material science, but useful for logical hypothesis testing.
+[Table [stem_tasks]: Computational tasks across STEM domains with algorithmic complexity analysis.] -->
+
+<!-- 
+Task |  Description of Complexity | Chemistry/Material Science Relevance
+-----|---------------------------|------------------------------------
+Many Body Energy Computation | Computes pairwise interaction energies for N particles, requiring N(N-1)/2 distance calculations and energy summations (distance × (E_A + E_B)) for pairs within 5.0 Å. Simple for N=2 (1 pair), complex for N=50 (1225 pairs) due to quadratic scaling and conditional checks. | Models molecular interactions (e.g., Lennard-Jones-like), relevant to chemical systems and material properties (e.g., crystal lattice energy).
+Peak Identification |  Sorts N 2D coordinates (position, intensity) by position or intensity. Simple for N=5 (quick sort), moderate for N=100 due to sorting cost. Additional complexity (e.g., overlapping peaks) could increase to O(N²) with preprocessing. | Core to spectroscopy (e.g., XRD, NMR), used in material characterization and chemical analysis.
+Diffusion Pathway (Shortest Path on a Grid) | Uses BFS to find the shortest path on an M×N grid, avoiding defects. Moderate for 5×5 grid (25 nodes), complex for 100×100 (10,000 nodes) due to large search space and defect constraints. | Models atom diffusion on crystal surfaces, key to material science (e.g., catalysis, surface defects).
+Finite State Machine Traversal | Processes L input characters through S states (e.g., S=4). Simple for L=5, complex for L=1000 due to linear tracking of state transitions. Fixed S=4 keeps transition table manageable (4×3=12 transitions for alphabet {a, b, c}). | Indirectly relevant to modeling chemical reaction pathways or material phase transitions as state machines.
+DNA Transcription and Translation | Transcribes N bases to mRNA and translates to amino acids (N/3 codons). Simple for N=12 (4 codons), complex for N=1000 with introns/stop codons due to sequence processing and rule application (base pairing, codon lookups). | Protein synthesis, relevant to protein chemistry and biomaterial design (e.g., protein-based materials).
+Resistor Network Simplification | Combines N resistors via series/parallel rules, with recursive parsing for nested structures (up to 5 levels for N>20). Moderate for N=3 (1–2 levels), complex for N=10 (3–5 levels) due to parsing and reciprocal calculations. | Relevant to material science via resistor material properties (e.g., conductivity in nanomaterials).
+Radioactive Decay Chain | Applies L decay steps (alpha, beta, gamma, theta) to track Z and A. Moderate for L=3, complex for L=15 with hypothetical decays (e.g., theta: Z−1, A−4), requiring precise arithmetic and rule switching. | Nuclear chemistry, relevant to radiometric dating and material stability (e.g., isotopes in materials).
+Tree Traversal | Traverses N nodes in a binary tree (pre-order, in-order, or post-order). Simple for N=5, complex for N=50 due to recursive navigation and order accuracy. | Indirectly relevant to chemistry via molecular tree structures (e.g., chemical graphs).
+Kinematic Motion Calculation | Physics | Arithmetic | Number of acceleration phases (N) | O(N) | Applies kinematic equations (v = u + at) for N phases. Simple for N=2, moderate for N=10 due to sequential velocity updates, but remains linear and straightforward. | Limited connection to chemistry/material science, though applicable to material dynamics (e.g., particle motion).
+Knights and Knaves Puzzle | Logic | Logical Deduction | Number of islanders/statements (N) | O(2^N) | Solves a constraint satisfaction problem with N islanders, testing truth/lie consistency. Complex even for N=2 due to combinatorial logic; N=5 is highly challenging due to exponential possibilities. | Minimal direct connection to chemistry/material science, but useful for logical hypothesis testing.
+[Table [stem_tasks]: Computational tasks across STEM domains with algorithmic complexity analysis.] -->
+
+
+<!-- 
+There is some efforts to improve each of this step with improved training with domain adaptation or pre-training, rl for improving reasoning and providing tools to execute the steps.
+
+
+
+
+
+Existing benchmarks for LLMs in scientific contexts, such as those focusing on scientific question answering or theorem proving \cite{zhong2023agieval, huang2023towards}, frequently struggle to isolate the pure algorithmic reasoning component. -->
+
+
+
+
+<!-- In ChemBench dataset was curated such that deep chemistry knowledge is required, and manually tagging the tasks based on human heuristics as reasoning is required or not. 
+In MaCBench an ablation study was done where the scientific terminology was removed to make task less specific in domain knowledge, but still some task even of explained in plain knowledge would require some scientific knowledge.
+While these are good approaches, it is difficult to quantify the exact contribution of each factor to a model's performance, especially also becasue the reasoning complexity and domain specific knowledge complexity can vary withing tasks.
+ -->
+
+<!-- Existing approaches like the ChemBench and MaCBench[#1] datasets try to address this challenge, but they have limitations.
+ChemBench manually tags tasks as requiring reasoning, but this is a binary, heuristic-based judgment that doesn't capture the varying degrees of reasoning complexity. 
+Similarly, MaCBench's ablation studies, which simplify scientific terminology, are a good step, but even "plain knowledge" versions of tasks can still implicitly require some level of domain-specific understanding.
+
+
+The core issue remains: it's difficult to quantify the exact contribution of knowledge versus reasoning to a model's performance.
+This is further complicated by the fact that the complexity of both the required reasoning and the domain-specific knowledge can vary significantly within a single task. 
+A single problem might demand simple factual recall in one part and complex, multi-step deduction in another, making a single "reasoning required" tag inadequate for a comprehensive evaluation. 
+This makes it hard to pinpoint whether a model's failure is due to a simple knowledge gap or a more fundamental inability to reason.
+In an ideal benchmarking scenario, we would have benchmarks that can isolate these factors and provide a clearer picture of a model's strengths and weaknesses.
+ -->
+
+
+<!-- 
+While multimodal Language Models like Gemini show
+promise as potential AI research assistants, their capabilities in nuanced scientific
+reasoning remain largely unevaluated, particularly across diverse scientific domains.
+Welcome to Markdeep. It's the simple way to write plain text with
+_style_. From https://casual-effects.com/markdeep -->
+
+
+References
+===============================================================================
+
+[#1]: Alampara, Nawaf, et al. "Probing the limitations of multimodal language models for chemistry and materials research." Nature computational science (2025): 1-10.
+
+
+
+Appendix
+=====================================================================================
+
+Tasks
+-------------------------------------------------------------------------------
+1. Many Body Energy Computation
+
+!!! 
+    **Task Description:** Calculate the total energy of a system with N particles arranged in 2D space. Each particle has an energy of E eV. The pairwise interaction energy between two particles is calculated as: (distance between particles) times (energy of particle A + energy of particle B), but only for pairs within 5.0 Angstrom of each other. What is the total energy of the system in eV?
+
+**Scalable Variable:** Number of particles (N)
+
+**Description of Complexity:** Computes pairwise interaction energies for N particles, requiring N(N-1)/2 distance calculations and energy summations. Simple for N=2 (1 pair), complex for N=50 (1225 pairs) due to quadratic scaling and conditional checks. Algorithmic complexity: O(N²).
+
+**Chemistry/Material Science Relevance:** Models molecular interactions (e.g., Lennard-Jones-like), relevant to chemical systems and material properties (e.g., crystal lattice energy).
+
+2. Peak Identification
+
+!!! 
+    **Task Description:** The model is given a list of 2D coordinates representing spectral peaks, in the format [[position_1, intensity_1], [position_2, intensity_2], ...]. The list is unsorted. The task is to identify list of peaks in sorted increasing or decreasing manner.
+
+**Scalable Variable:** Number of peaks (N)
+
+**Description of Complexity:** Sorts N 2D coordinates (position, intensity) by position or intensity. Simple for N=5 (quick sort), moderate for N=100 due to sorting cost. Additional complexity (e.g., overlapping peaks) could increase to O(N²) with preprocessing. Algorithmic complexity: O(N log N).
+
+**Chemistry/Material Science Relevance:** Core to spectroscopy (e.g., XRD, NMR), used in material characterization and chemical analysis.
+
+3. Diffusion Pathway (Shortest Path on a Grid)
+
+!!! 
+    **Task Description:** The model is given a 2D grid (e.g., 10x10) representing a crystal surface. The grid is given as a list of lists, where 0 is an empty site and 1 is an impassable defect. The model is also given a starting coordinate and an ending coordinate. The task is to find the length of the shortest path an atom can take to get from start to end, moving only up, down, left, or right.
+
+**Scalable Variable:** Grid size (M×N)
+
+**Description of Complexity:** Uses BFS to find the shortest path on an M×N grid, avoiding defects. Moderate for 5×5 grid (25 nodes), complex for 100×100 (10,000 nodes) due to large search space and defect constraints. Algorithmic complexity: O(MN).
+
+**Chemistry/Material Science Relevance:** Models atom diffusion on crystal surfaces, key to material science (e.g., catalysis, surface defects).
+
+4. Finite State Machine Traversal
+
+!!! 
+    **Task Description:** The model is given the definition of a finite state machine: a set of states, a starting state, an alphabet of inputs, and a transition function (e.g., "From state Q1, on input 'a', go to Q2; on input 'b', go to Q1"). The model is then given an input string. The task is to determine the final state of the machine after processing the entire string.
+
+**Scalable Variable:** Length of input string (L) with 4 states (Q1, Q2, Q3, Q4), Alphabet: {a, b, c}
+
+**Description of Complexity:** Processes L input characters through S states (e.g., S=4). Simple for L=5, complex for L=1000 due to linear tracking of state transitions. Fixed S=4 keeps transition table manageable (4×3=12 transitions for alphabet {a, b, c}). Algorithmic complexity: O(L).
+
+**Chemistry/Material Science Relevance:** Indirectly relevant to modeling chemical reaction pathways or material phase transitions as state machines.
+
+5. DNA Transcription and Translation
+
+!!! 
+    **Task Description:** The model is given a DNA sequence (e.g., 3'-TACGATTACAGC-5') and a standard codon-to-amino-acid lookup table. The task is to provide the final polypeptide chain, which involves two steps: 1) Transcribe the DNA to mRNA (5'-AUGCUAAUGUCG-3'). 2) Translate the mRNA codons to a sequence of amino acids (Met-Stop-Met-Ser).
+
+**Scalable Variable:** Length of DNA sequence (N), with randomly added 1–2 stop codons or a single intron
+
+**Description of Complexity:** Transcribes N bases to mRNA and translates to amino acids (N/3 codons). Simple for N=12 (4 codons), complex for N=1000 with introns/stop codons due to sequence processing and rule application (base pairing, codon lookups). Algorithmic complexity: O(N).
+
+**Chemistry/Material Science Relevance:** Protein synthesis, relevant to protein chemistry and biomaterial design (e.g., protein-based materials).
+
+6. Resistor Network Simplification
+
+!!! 
+    **Task Description:** The model is given a textual description of a circuit of resistors (e.g., "R1 of 10 ohms is in series with a parallel combination of R2 (20 ohms) and R3 (20 ohms)"). The task is to calculate the total equivalent resistance of the network. Nesting levels: up to 10 resistors have 3 levels, up to 20 have 4 levels max, and more than 20 have 5 levels.
+
+**Scalable Variable:** Number of resistors (N)
+
+**Description of Complexity:** Combines N resistors via series/parallel rules, with recursive parsing for nested structures (up to 5 levels for N>20). Moderate for N=3 (1–2 levels), complex for N=10 (3–5 levels) due to parsing and reciprocal calculations. Algorithmic complexity: O(N).
+
+**Chemistry/Material Science Relevance:** Relevant to material science via resistor material properties (e.g., conductivity in nanomaterials).
+
+7. Radioactive Decay Chain
+
+!!! 
+    **Task Description:** The model is told that a specific isotope (e.g., Uranium-238, Z=92) undergoes a sequence of radioactive decays (e.g., "alpha, beta, beta, alpha"). The task is to identify the final resulting isotope (element name and mass number). The rules are: Alpha decay reduces atomic number by 2 and mass number by 4. Beta decay increases atomic number by 1 and does not change the mass number.
+
+**Scalable Variable:** Length of decay chain (L)
+
+**Description of Complexity:** Applies L decay steps (alpha, beta, gamma, theta) to track Z and A. Moderate for L=3, complex for L=15 with hypothetical decays (e.g., theta: Z−1, A−4), requiring precise arithmetic and rule switching. Algorithmic complexity: O(L).
+
+**Chemistry/Material Science Relevance:** Nuclear chemistry, relevant to radiometric dating and material stability (e.g., isotopes in materials).
+
+8. Tree Traversal
+
+!!! 
+    **Task Description:** The model is given a representation of a binary tree (e.g., using a nested list or a dictionary like {'value': 10, 'left': {'value': 5}, 'right': {'value': 15}}). The task is to provide the sequence of node values visited in a specific traversal order (e.g., "pre-order", "in-order", or "post-order").
+
+**Scalable Variable:** Number of nodes in the tree (N)
+
+**Description of Complexity:** Traverses N nodes in a binary tree (pre-order, in-order, or post-order). Simple for N=5, complex for N=50 due to recursive navigation and order accuracy. Algorithmic complexity: O(N).
+
+**Chemistry/Material Science Relevance:** Indirectly relevant to chemistry via molecular tree structures (e.g., chemical graphs).
+
+9. Kinematic Motion Calculation
+
+!!! 
+    **Task Description:** An object starts at rest. It undergoes a series of constant accelerations for specified durations (e.g., "Accelerate at 2 m/s² for 5 seconds, then accelerate at -1 m/s² for 8 seconds"). The task is to calculate the final velocity of the object.
+
+**Scalable Variable:** Number of distinct acceleration phases (N)
+
+**Description of Complexity:** Applies kinematic equations (v = u + at) for N phases. Simple for N=2, moderate for N=10 due to sequential velocity updates, but remains linear and straightforward. Algorithmic complexity: O(N).
+
+**Chemistry/Material Science Relevance:** Limited connection to chemistry/material science, though applicable to material dynamics (e.g., particle motion).
+
+10. Knights and Knaves Puzzle
+
+!!! 
+    **Task Description:** The model is told it's on an island inhabited by Knights (who always tell the truth) and Knaves (who always lie). It is then presented with statements from islanders (e.g., "A says: 'B is a Knave'. B says: 'A and I are of opposite types'."). The task is to deduce the identity (Knight or Knave) of each person.
+
+**Scalable Variable:** Number of islanders and statements (N)
+
+**Description of Complexity:** Solves a constraint satisfaction problem with N islanders, testing truth/lie consistency. Complex even for N=2 due to combinatorial logic; N=5 is highly challenging due to exponential possibilities. Algorithmic complexity: O(2^N).
+
+**Chemistry/Material Science Relevance:** Minimal direct connection to chemistry/material science, but useful for logical hypothesis testing.
+
+
 
 
 
