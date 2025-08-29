@@ -6,7 +6,7 @@
 
 Introduction
 ===============================================================================
-Evaluating frontier models on scientific tasks is challenging because solving Scientific tasks often require a blend of domain-specific knowledge, logical reasoning (identifying the set of steps that the llm has to perform based on the given information and prior knowledge), and multi-step algorithmic execution capabilities. For example consider identifying the phase of a material from XRD pattern. The domain knowledge the LLM has to possess here is the hkl rules for different types of crystal structure.
+Evaluating frontier models on scientific tasks is challenging because solving Scientific tasks often require a blend of domain-specific knowledge, logical reasoning (identifying the set of steps that the llm has to perform based on the given information and prior knowledge it has about the domain/task), and multi-step algorithmic execution capabilities. For example consider identifying the phase of a material from XRD pattern. The domain knowledge the LLM has to possess here is the hkl rules for different types of crystal structure.
 The reasoning LLM has to do is to infer that is the set of steps it has to take to solve this problem, from the set of given peaks it has to identify highest peak, take ratio between peaks etc.
 And the execution capability is the ability to execute the plan developed in reasoning process (thinking process) step-by-step.
 
@@ -32,12 +32,21 @@ The methodology presented herein involves:
 3. Complementing these evaluations with an analysis of performance when code execution is assumed, i.e., when the model only needs to provide the logic or algorithm that would then be executed by an external interpreter, to further isolate reasoning from direct computation.
 
 
-This study aims to provide a more nuanced understanding of \llm\ capabilities in scientific algorithmic reasoning, offering valuable insights for developing more robust and reliable AI systems for scientific applications.
+This study aims to provide a more nuanced understanding of LLM capabilities in scientific algorithmic reasoning, offering valuable insights for developing more robust and reliable AI systems for scientific applications.
 
 Methodology
 =================================================================================
 
-Framework Design Principles
+Our benchmark framework, comprising a diverse suite of tasks, is meticulously designed around a set of core principles detailed below.
+These tasks are not only crafted to rigorously evaluate advanced AI reasoning but also hold direct implications for a wide spectrum of scientific disciplines, spanning chemistry, physics, materials science, and computer science. 
+While certain tasks may necessitate specific scientific domain knowledge, any requisite information, such as lookup tables or fundamental scientific principles, is explicitly provided within the task description. 
+The primary challenge for the model lies in its ability to infer the correct sequence of steps or the underlying algorithm required to address the scientific problem posed.
+To precisely decouple this reasoning capability from task execution, we assess whether the model can articulate these identified steps or algorithms as executable code, alongside solving the task itself through a chain-of-thought approach. This methodology leverages the advanced code generation capabilities of frontier models, positing that the successful synthesis of an appropriate algorithm into code serves as a robust, indirect measure of its scientific reasoning. 
+This approach circumvents the subjectivity inherent in human or LLM-as-judge evaluations of free-form reasoning descriptions, providing a quantifiable and verifiable output. 
+Furthermore, by comparing the accuracy derived from executing the model-generated code against its direct task solution, we gain additional insights into its dual capabilities for both algorithmic inference and precise task execution.
+
+
+Task Design Principles
 -------------------------------------------------------------------------------
 
 Our benchmark framework implements four core design principles addressing limitations in current evaluation methods:
@@ -49,6 +58,17 @@ Our benchmark framework implements four core design principles addressing limita
 3. *Complexity Tunability:* Each task includes scalable difficulty parameters enabling systematic exploration of performance degradation patterns. Complexity scaling follows theoretical principles from computational complexity theory.
 
 4. *Verifiable Execution:* All tasks have algorithmically deterministic solutions with step-by-step verification, eliminating ambiguity in correctness assessment.
+
+
+For example, let us take the `diffusion pathway task`, which presents models with a 2D grid representing a crystal surface containing both passable sites and impassable defects.
+Given a starting and ending coordinate, the model's objective is to determine the length of the shortest path an atom can take by moving orthogonally across passable sites.
+This task adheres to stringent design principles: Knowledge-Reasoning Separation is achieved by framing the problem as pure grid-based path finding, circumventing the need for specialized materials science knowledge while demanding robust algorithmic reasoning. 
+Contamination Resistance is ensured through parameterized algorithmic generation of novel defect configurations for each instance, preventing memorization of specific problem structures. 
+The grid's scalable size serves as a tunable complexity parameter, allowing systematic investigation into performance degradation as the search space expands, thereby aligning with principles of computational complexity theory. 
+Furthermore, Verifiable Execution is guaranteed by the inherent determinism of shortest path algorithms, enabling precise, unambiguous assessment of correctness against a single, algorithmically derivable solution.
+Scientifically, this task models atomic diffusion and migration within defective crystalline structures, a process in materials science that governs phenomena ranging from alloy formation and semiconductor doping to material degradation, providing a simplified yet powerful abstraction for assessing an agent's capacity to navigate complex, obstructed landscapes relevant to real-world material behaviors.
+
+Table [stem_tasks] summarizes the tasks, their complexity scaling parameters, and their relevance to various scientific domains. Detailed description of the tasks are given in section Tasks
 
 <style>
 table { 
@@ -73,10 +93,13 @@ Knights and Knaves | Logic | Logical Deduction | Islanders (N) | O(2^N) | Expone
 [Table [stem_tasks]: Computational tasks across STEM domains with algorithmic complexity analysis.]
 
 
+Results
+============================================================
+
+![A picture of a robot](benchmark_complexity_analysis.jpg)
+![A picture of a robot](images/benchmark_complexity_analysis.jpg)
 
 
-Tasks
--------------------------------------------------------------------------------
 <!-- 
 Task | STEM Domain | Algorithm Type | Scalable Variable | Algorithmic Complexity | Description of Complexity | Chemistry/Material Science Relevance
 -----|-------------|----------------|-------------------|------------------------|---------------------------|------------------------------------
@@ -267,6 +290,8 @@ Tasks
 **Description of Complexity:** Solves a constraint satisfaction problem with N islanders, testing truth/lie consistency. Complex even for N=2 due to combinatorial logic; N=5 is highly challenging due to exponential possibilities. Algorithmic complexity: O(2^N).
 
 **Chemistry/Material Science Relevance:** Minimal direct connection to chemistry/material science, but useful for logical hypothesis testing.
+
+
 
 
 
