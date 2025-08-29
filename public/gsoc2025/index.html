@@ -96,6 +96,15 @@ Knights and Knaves | Logic | Logical Deduction | Islanders (N) | O(2^N) | Expone
 Results
 ============================================================
 
+The comparison between capabilities and solving step by step within language responses illustrates a critical disparity between models' reasoning capabilities, as inferred through code generation, and their direct problem-solving accuracy via chain-of-thought (CoT) language responses.
+Across a range of tasks the "Code Execution" metric consistently demonstrates substantially higher accuracy compared to "Chain of Thought" performance. 
+This stark contrast, particularly evident in tasks where CoT accuracy is near zero while Code Execution achieves near-perfect scores, strongly suggests that models are often capable of identifying the correct underlying algorithms or sequences of steps necessary to solve a problem—evidenced by their ability to generate accurate, executable code—but struggle to flawlessly implement these steps through a purely language-based, step-by-step reasoning process. 
+This implies a potential disconnect where the abstract understanding and algorithmic formulation are robust, yet the meticulous execution within a natural language generation framework remains a significant challenge. 
+The superior performance of code execution, therefore, serves as a compelling indicator that the foundational reasoning ability is present, but direct task execution via language output still presents an area for considerable improvement.
+
+![Figure [code]: Performance of Gemini models on different tasks. For each task benchmarking is done with writing algorithm for solution as executable code and writing solution in language response. Refer to Table [stem_tasks] for details on the task ](images/reasoning.jpg)
+
+
 Our benchmarking results provide a clear picture of how different Gemini models, with and without explicit thinking prompts, handle increasing algorithmic complexity across a variety of scientific reasoning tasks. 
 The accuracy, plotted against the scalable variable, reveals distinct performance curves for each model variant.
 
@@ -112,12 +121,11 @@ However, this improvement is not universal and often doesn’t bridge the gap to
 
 
 
-![A picture of a robot](images/benchmark_complexity_analysis.jpg)
-![Figure [robot]: Performance of Gemini models on different tasks. For each task benchmarking is done with increasing complexity. Refer to Table [stem_tasks] for details on factor varying the complexity of the task ](images/benchmark_complexity_analysis.jpg)
+![Figure [complexity]: Performance of Gemini models on different tasks. For each task benchmarking is done with increasing complexity. Refer to Table [stem_tasks] for details on factor varying the complexity of the task ](images/benchmark_complexity_analysis.jpg)
 
 
-Slopes of Decline and Algorithmic Complexity
--------------------------------------------------------------------------------
+### Slopes of Decline and Algorithmic Complexity
+
 
 A crucial observation from the results is the varied ”slopes of decline” in accuracy for different tasks and models
 
@@ -127,8 +135,8 @@ A crucial observation from the results is the varied ”slopes of decline” in 
 
 
 
-Discussion
-=================================================
+<!-- Discussion
+================================================= -->
 
 Our benchmarking effort provides crucial insights into the algorithmic reasoning capabilities of state-of-the-art LLMs, particularly within the Gemini family. 
 By designing tasks with scalable complexity and disentangling knowledge from execution, we can draw several key conclusions.
@@ -147,7 +155,7 @@ This is particularly relevant for scientific applications where the primary goal
 Tasks like 	`Knights and Knaves` necessitate systematic exploration of a large decision space still pose a formidable barrier for current LLMs, where a single incorrect logical step can invalidate the entire solution.
 
 
-Conclusion
+Discussion
 =================================
 
 Our benchmark analysis indicate that often bottleneck in solving scientific tasks is not the knowledge or reasoning capability but implementing them step by step in language responses.
