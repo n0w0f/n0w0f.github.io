@@ -96,11 +96,67 @@ Knights and Knaves | Logic | Logical Deduction | Islanders (N) | O(2^N) | Expone
 Results
 ============================================================
 
-![A picture of a robot](benchmark_complexity_analysis.jpg)
-![A picture of a robot](images/benchmark_complexity_analysis.jpg)
+Our benchmarking results provide a clear picture of how different Gemini models, with and without explicit thinking prompts, handle increasing algorithmic complexity across a variety of scientific reasoning tasks. 
+The accuracy, plotted against the scalable variable, reveals distinct performance curves for each model variant.
 
+In most tasks, Gemini-2.5-Pro consistently outperforms both Gemini-2.5-Flash and Gemini-2.5-Flash with thinking and token budgets allocated.
+Gemini-2.5-Pro exhibits a higher initial accuracy and maintains its performance for a longer duration as complexity increases (especially in those linear complexity tasks), demonstrating greater robustness in algorithmic execution using step by step chain of thought reasoning.
+
+
+*Impact of Algorithmic Complexity:* A consistent trend observed across almost all tasks is the degradation of accuracy as the scalable variable (and thus algorithmic complexity) increases (). 
+This confirms our hypothesis that increasing computational steps or data points challenges the models significantly.
+
+*Effectiveness of ”Thinking” budget* The ”thinking process” (Gemini-2.5-Flash-Thinking) generally improves the performance of Gemini-2.5-Flash. For tasks like `Finite State Machine`, `Tree Traversal`, and `Diffusion Pathway` (for more details on these tasks refer to section Tasks), Gemini-2.5-Flash-Thinking shows a noticeable uplift compared to vanilla Gemini-2.5-Flash, indicating that explicit step-by-step reasoning can help mitigate some of the limitations. 
+However, this improvement is not universal and often doesn’t bridge the gap to Gemini-2.5-Pro.
+
+
+
+
+![A picture of a robot](images/benchmark_complexity_analysis.jpg)
+![Figure [robot]: Performance of Gemini models on different tasks. For each task benchmarking is done with increasing complexity. Refer to Table [stem_tasks] for details on factor varying the complexity of the task ](images/benchmark_complexity_analysis.jpg)
+
+
+Slopes of Decline and Algorithmic Complexity
+-------------------------------------------------------------------------------
+
+A crucial observation from the results is the varied ”slopes of decline” in accuracy for different tasks and models
+
+- Tasks with inherently higher algorithmic complexity (e.g., O(N 2) for pair-wise interactions, or exponential for Knights & Knaves) show steeper declines for all models, but especially for the Flash variants.
+- Tasks requiring linear sequential operations (e.g., `Finite State Machine`, `Kinematic Motion` ) show a more gradual decline for Gemini-2.5-Pro but still a sharp drop for the Flash models beyond a certain threshold.
+- The difference in slopes between Gemini-2.5-Pro and the Flash models may suggests that Gemini-2.5-Pro has a greater ”working memory” or capacity to manage intermediate states and computations, allowing it to maintain accuracy for higher levels of complexity before its performance eventually degrades.
+
+
+
+Discussion
+=================================================
+
+Our benchmarking effort provides crucial insights into the algorithmic reasoning capabilities of state-of-the-art LLMs, particularly within the Gemini family. 
+By designing tasks with scalable complexity and disentangling knowledge from execution, we can draw several key conclusions.
+
+
+The most prominent finding is that while LLMs possess the knowledge and reasoning capabilities to identify the solution or algorithm for many scientific tasks (evident from code execution results), their ability to flawlessly execute multi-step algorithms as chain of thoughts, especially as the number of steps or data points increases, remains a significant bottleneck.
+This is evident in the consistent accuracy degradation across all models and tasks when the scalable variable is increased. 
+This suggests that current LLMs struggle with maintaining computational fidelity over extended chains of reasoning, similar to how human working memory has limits when performing complex mental calculations.
+The ”thinking budget" does offer a partial remedy, indicating that explicit articulation of intermediate steps can serve as a form of ”scratchpad” or internal self-correction mechanism, particularly for smaller models like Gemini-2.5-Flash.
+
+
+In tasks like `Radioactive Decay Chain` or `Kinematic Motion`, the underlying physics principles are relatively simple.
+The challenge for the LLM is not understanding alpha decay or acceleration, but rather applying these rules sequentially and accurately for many steps. 
+The observed failures are thus less about a lack of scientific knowledge and more about correctly executing a known procedure using language response. 
+This is particularly relevant for scientific applications where the primary goal might be to automate routine computations or simulations based on established models, rather than generating novel theories.
+Tasks like 	`Knights and Knaves` necessitate systematic exploration of a large decision space still pose a formidable barrier for current LLMs, where a single incorrect logical step can invalidate the entire solution.
+
+
+Conclusion
+=================================
+
+Our benchmark analysis indicate that often bottleneck in solving scientific tasks is not the knowledge or reasoning capability but implementing them step by step in language responses.
+The observed limitations in pure algorithmic execution highlight the continued need for **hybrid AI systems**.
+LLMs could excel at interpreting problems, generating high-level algorithms, or even writing code snippets, while dedicated symbolic solvers or traditional programming languages handle the precise, multi-step computations.
+Improving algorithmic reasoning and execution may require moving beyond current token-prediction paradigms. Future LLMs might benefit from integrated ”thinking engines,” symbolic reasoning modules, or more sophisticated internal ”scratchpads” that are less prone to dilution over long reasoning chains.
 
 <!-- 
+
 Task | STEM Domain | Algorithm Type | Scalable Variable | Algorithmic Complexity | Description of Complexity | Chemistry/Material Science Relevance
 -----|-------------|----------------|-------------------|------------------------|---------------------------|------------------------------------
 Many Body Energy Computation | Physics | Arithmetic | Number of particles (N) | O(N²) | Computes pairwise interaction energies for N particles, requiring N(N-1)/2 distance calculations and energy summations (distance × (E_A + E_B)) for pairs within 5.0 Å. Simple for N=2 (1 pair), complex for N=50 (1225 pairs) due to quadratic scaling and conditional checks. | Models molecular interactions (e.g., Lennard-Jones-like), relevant to chemical systems and material properties (e.g., crystal lattice energy).
