@@ -1,34 +1,31 @@
               <meta charset="utf-8" emacsmode="-*- markdown -*-">
 
-                            **Benchmarking Algorithmic Reasoning Capabilities of Frontier Models in Scientific Tasks (WIP)**
+                            **Benchmarking Algorithmic Reasoning Capabilities of Frontier Models in Scientific Tasks**
 
 
 
 Introduction
 ===============================================================================
-Evaluating frontier models on scientific tasks is challenging because solving Scientific tasks often require a blend of domain-specific knowledge, logical reasoning (identifying the set of steps that the llm has to perform based on the given information and prior knowledge it has about the domain/task), and multi-step algorithmic execution capabilities. For example consider identifying the phase of a material from XRD pattern. The domain knowledge the LLM has to possess here is the hkl rules for different types of crystal structure.
-The reasoning LLM has to do is to infer that is the set of steps it has to take to solve this problem, from the set of given peaks it has to identify highest peak, take ratio between peaks etc.
-And the execution capability is the ability to execute the plan developed in reasoning process (thinking process) step-by-step.
+
+Evaluating frontier models on scientific tasks presents unique challenges, as success often demands a sophisticated blend of domain-specific knowledge, logical reasoning (identifying a sequence of steps based on given information and prior knowledge), and multi-step algorithmic execution. 
+For instance, determining the phase of a material from an X-ray Diffraction (XRD) pattern requires an LLM to possess domain knowledge, such as the HKL rules for various crystal structures. 
+The reasoning involves inferring the necessary steps to solve the problem—e.g., identifying the highest peak and calculating peak ratios from given data.
+Finally, execution capability refers to the model's ability to systematically carry out the plan developed during the reasoning process.
 
 
-Existing benchmarks often don't distinguish between these factors, making it difficult to determine if a model fails due to a lack of specialized knowledge or an inability to identify and or execute that knowledge logically.
-The "knowledge gap" often obscures the "reasoning gap" \cite{bang2023multi}. 
-An LLM might fail a scientific reasoning task due to a lack of specific factual knowledge, or it might possess the knowledge but lack the capability to correctly apply a multi-step algorithm or perform accurate computation based on that knowledge.
-Furthermore, the inherent complexity of the algorithmic steps required to solve a problem is often overlooked in current evaluations.
-A task requiring five sequential calculations is fundamentally different from one requiring fifty, even if the underlying scientific principles are the same.
+Existing benchmarks frequently conflate these factors, making it difficult to discern whether a model's failure stems from a lack of specialized knowledge or an inability to logically apply or execute that knowledge. 
+This "knowledge gap" often obscures a more fundamental "reasoning gap" [#1]. An LLM might fail a scientific reasoning task either due to insufficient factual knowledge or, conversely, it might possess the knowledge but be unable to correctly apply a multi-step algorithm or perform accurate computations based on that knowledge.
+Furthermore, the inherent complexity of the algorithmic steps required to solve a problem is often overlooked in current evaluations; a task demanding five sequential calculations is fundamentally different from one requiring fifty, even if the underlying scientific principles are identical.
 
-
-
-This project attempts to address these limitations by introducing a novel benchmarking approach. 
-Our primary motivation is to abstract away the domain-specific knowledge component as much as possible, focusing instead on the LLM's ability to execute a series of logical and computational steps—an "algorithm"—once the problem has been conceptually understood. 
+This project introduces a novel benchmarking approach to address these limitations. 
+Our primary motivation is to abstract away the domain-specific knowledge component as much as possible, focusing instead on the LLM's capacity to execute a series of logical and computational steps—an "algorithm"—once the problem has been conceptually understood. 
 A second, equally important motivation is to systematically evaluate how LLM performance degrades as the inherent algorithmic complexity of a task increases.
 We posit that by introducing a "scalable variable" within each task, we can precisely control the computational burden and observe the resilience limits of different LLM architectures and prompting strategies.
-
 
 The methodology presented herein involves:
 
 1. Designing a diverse set of ten scientific-algorithmic tasks, each with a known solution complexity that can be parametrically varied.
-2. Evaluating the performance of Google's \geminiflash\ and \geminipro\ models, both with and without a "chain-of-thought" or "thinking process" prompting strategy, across varying levels of algorithmic complexity for each task.
+2. Evaluating the performance of Gemini-2.5-Flash and Gemini-2.5-Flash models, both with and without a "chain-of-thought" or "thinking process" prompting strategy, across varying levels of algorithmic complexity for each task.
 3. Complementing these evaluations with an analysis of performance when code execution is assumed, i.e., when the model only needs to provide the logic or algorithm that would then be executed by an external interpreter, to further isolate reasoning from direct computation.
 
 
@@ -236,8 +233,9 @@ _style_. From https://casual-effects.com/markdeep -->
 References
 ===============================================================================
 
-[#1]: Alampara, Nawaf, et al. "Probing the limitations of multimodal language models for chemistry and materials research." Nature computational science (2025): 1-10.
+[#1]: Tie, Guiyao, et al. "MMMR: Benchmarking Massive Multi-Modal Reasoning Tasks." arXiv preprint arXiv:2505.16459 (2025).
 
+[#2]: Alampara, Nawaf, et al. "Probing the limitations of multimodal language models for chemistry and materials research." Nature computational science (2025): 1-10.
 
 
 Appendix
