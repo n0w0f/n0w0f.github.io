@@ -4,7 +4,7 @@ import { PublicationEntry } from "@/components/publication-entry";
 import { publicationData } from "@/data/publication";
 import { ProfileSection } from "@/components/profile-section";
 import { aboutMe } from "@/data/aboutme";
-import { NewsEntry } from "@/components/news-entry";
+import { EnhancedNewsEntry } from "@/components/enhanced-news-entry";
 import { newsData } from "@/data/news";
 import { ExperienceEntry } from "@/components/experience-entry";
 import { experienceData } from "@/data/experience";
@@ -58,7 +58,7 @@ export default function Home() {
                         <div className="space-y-12">
                           {newsData.map((news, index) => (
                             <div key={index}>
-                              <NewsEntry news={news} />
+                              <EnhancedNewsEntry news={news} />
                             </div>
                           ))}
                         </div>
