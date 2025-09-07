@@ -1,6 +1,6 @@
               <meta charset="utf-8" emacsmode="-*- markdown -*-">
 
-                            **Benchmarking Algorithmic Reasoning Capabilities of Frontier Models in Scientific Tasks**
+                            **Benchmarking Algorithmic Reasoning Capabilities of Gemini Models in Scientific Tasks**
 
 
 
@@ -65,7 +65,7 @@ The grid's scalable size serves as a tunable complexity parameter, allowing syst
 Furthermore, Verifiable Execution is guaranteed by the inherent determinism of shortest path algorithms, enabling precise, unambiguous assessment of correctness against a single, algorithmically derivable solution.
 Scientifically, this task models atomic diffusion and migration within defective crystalline structures, a process in materials science that governs phenomena ranging from alloy formation and semiconductor doping to material degradation, providing a simplified yet powerful abstraction for assessing an agent's capacity to navigate complex, obstructed landscapes relevant to real-world material behaviors.
 
-Table [stem_tasks] summarizes the tasks, their complexity scaling parameters, and their relevance to various scientific domains. Detailed description of the tasks are given in section Tasks
+Table [stem_tasks] summarizes the tasks, their complexity scaling parameters, and their relevance to various scientific domains. Detailed description of the tasks are given in section Tasks. The complete implementation is available as the open-source SciRex framework, described in detail in the [Codebase and Implementation] section of the appendix.
 
 <style>
 table { 
@@ -158,7 +158,9 @@ Discussion
 Our benchmark analysis indicate that often bottleneck in solving scientific tasks is not the knowledge or reasoning capability but implementing them step by step in language responses.
 The observed limitations in pure algorithmic execution highlight the continued need for **hybrid AI systems**.
 LLMs could excel at interpreting problems, generating high-level algorithms, or even writing code snippets, while dedicated symbolic solvers or traditional programming languages handle the precise, multi-step computations.
-Improving algorithmic reasoning and execution may require moving beyond current token-prediction paradigms. Future LLMs might benefit from integrated ”thinking engines,” symbolic reasoning modules, or more sophisticated internal ”scratchpads” that are less prone to dilution over long reasoning chains.
+Improving algorithmic reasoning and execution may require moving beyond current token-prediction paradigms. Future LLMs might benefit from integrated "thinking engines," symbolic reasoning modules, or more sophisticated internal "scratchpads" that are less prone to dilution over long reasoning chains.
+
+To facilitate further research in this area, we have released **SciRex**, an open-source Python framework that implements all the tasks and evaluation protocols described in this study. The framework supports both reproducibility of our results and extension to new scientific domains, with built-in multimodal capabilities and systematic complexity scaling (see [Codebase and Implementation] in the appendix).
 
 <!-- 
 
@@ -240,6 +242,105 @@ References
 
 Appendix
 =====================================================================================
+
+Codebase and Implementation
+-------------------------------------------------------------------------------
+
+The complete implementation of this benchmarking framework is available as **SciRex** - an open-source Python framework specifically designed for benchmarking large language models on scientific research tasks. The codebase supports both text-only and multimodal scientific content evaluation, with particular focus on chemistry, physics, and materials science domains.
+
+**Repository:** https://github.com/n0w0f/scirex
+
+### Key Features
+
+- **Scientific Domain Specialization:** Tasks designed for STEM domains with algorithmic complexity scaling
+- **Multimodal Support:** Handles text, images, and mixed-modality scientific content  
+- **Extensible Architecture:** Simple API for custom datasets, tasks, and model integration
+- **Reproducible Benchmarks:** Standardized evaluation metrics and result export formats
+
+### Quick Start
+
+Install SciRex using pip or uv:
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Python
+# Using uv (recommended)
+curl -LsSf https://astral.sh/uv/install.sh | sh
+uv init scirex
+uv add git+https://github.com/n0w0f/scirex.git
+
+# Using pip
+pip install git+https://github.com/n0w0f/scirex.git
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+### Usage Examples
+
+**Text-Only Benchmarking:**
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Python
+from scirex import Benchmark, Dataset, GeminiModel, PromptTemplate
+
+# Load dataset and configure model
+dataset = Dataset.from_json("path/to/dataset.json")
+model = GeminiModel(model_name="gemini-2.5-flash")
+prompt = PromptTemplate.from_template("solve_step_by_step")
+
+# Run benchmark
+benchmark = Benchmark(dataset, model, prompt)
+results = benchmark.run(max_tasks=50, save_results=True)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**Multimodal Benchmarking:**
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Python
+from scirex import Benchmark, Dataset, GeminiModel
+
+# Configure for multimodal tasks
+dataset = Dataset.from_json("multimodal_dataset.json")  
+model = GeminiModel(model_name="gemini-2.5-flash")
+
+# Run with multimodal support
+benchmark = Benchmark(dataset, model, test_multimodal=True)
+results = benchmark.run(max_tasks=25)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**Creating Custom Tasks:**
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Python
+from scirex import Task
+
+# Define a custom scientific task
+task = Task(
+    id="custom_diffusion_001",
+    name="Surface Diffusion Analysis", 
+    description="Analyze atomic diffusion pathways on crystal surfaces",
+    answer_type="numeric",
+    target_value=42.0,
+    keywords=["materials_science", "diffusion", "crystallography"],
+    input_template="Given the crystal structure: {structure_image}\nCalculate the diffusion barrier for path: {text_description}",
+    modality_entries={
+        "structure_image": "image",
+        "text_description": "text"
+    }
+)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+### Framework Architecture
+
+The SciRex framework implements the design principles outlined in this paper:
+
+- **Knowledge-Reasoning Separation:** Tasks abstract domain knowledge while focusing on algorithmic execution
+- **Contamination Resistance:** Parameterized generation prevents training data overlap  
+- **Complexity Tunability:** Scalable difficulty parameters for systematic performance analysis
+- **Verifiable Execution:** Deterministic solutions enable objective accuracy assessment
+
+All tasks described in Table [stem_tasks] are implemented within this framework, allowing researchers to reproduce our results or extend the benchmark with additional scientific domains.
+
+### Configuration and Setup
+
+Create a `.env` file for API configuration:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+GEMINI_API_KEY=your_api_key_here
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The framework automatically handles multimodal content detection, input preprocessing, and result aggregation across different complexity levels.
+
+For detailed documentation and additional examples, visit the project repository at https://github.com/n0w0f/scirex.
 
 Tasks
 -------------------------------------------------------------------------------
