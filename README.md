@@ -21,7 +21,22 @@ export const publicationData: Publication[] = [
 ];
 ```
 
-To update your website, you can simply add objects to the array.
+Similarly, `src/data/news.ts` contains enhanced news items that support images, links, and tags:
+
+```typescript
+export const newsData: News[] = [
+  {
+    date: "May 2025",
+    title: "Accepted for Google Summer of Code 2025",
+    description: "I will contribute to <a href='https://deepmind.google/'>DeepMind</a>. <a href='https://example.com/project'>Read more</a>.",
+    link: "https://summerofcode.withgoogle.com/programs/2025/projects/example",
+    imageUrl: "https://developers.google.com/open-source/gsoc/resources/downloads/GSoC-logo-horizontal.svg",
+    tags: ["Google Summer of Code", "AI Research"]
+  }
+];
+```
+
+To update your website, you can simply add objects to the arrays.
 
 The schemas are defined in the same files, and many fields are optional for flexibility:
 
@@ -37,6 +52,15 @@ export interface Publication {
   tldr?: string;
   imageUrl?: string;
   award?: string;
+}
+
+export interface News {
+  date: string;
+  title: string;
+  description: string; // Supports HTML content for links
+  link?: string;
+  imageUrl?: string;
+  tags?: string[];
 }
 ```
 
