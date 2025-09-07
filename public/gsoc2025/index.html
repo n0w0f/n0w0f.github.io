@@ -349,7 +349,7 @@ Tasks
 !!! 
     **Task Description:** Calculate the total energy of a system with N particles arranged in 2D space. Each particle has an energy of E eV. The pairwise interaction energy between two particles is calculated as: (distance between particles) times (energy of particle A + energy of particle B), but only for pairs within 5.0 Angstrom of each other. What is the total energy of the system in eV?
 
-![Figure [particle_energy]: Example particle system with N=25 particles for many-body energy calculation task](https://datasets-server.huggingface.co/cached-assets/n0w0f/scirex-image/--/e0d6786f9cca37581574ef8a9b8bc94a6a004b8d/--/particle_energy_multimodal_2d_n25/train/0/image/image.png)
+![Figure [particle_energy]: Example particle system with N=25 particles for many-body energy calculation task](images/energy.png)
 
 **Scalable Variable:** Number of particles (N)
 
@@ -362,7 +362,7 @@ Tasks
 !!! 
     **Task Description:** The model is given a list of 2D coordinates representing spectral peaks, in the format [[position_1, intensity_1], [position_2, intensity_2], ...]. The list is unsorted. The task is to identify list of peaks in sorted increasing or decreasing manner.
 
-![Figure [peak_sorting]: Example spectral data with N=25 peaks for identification and sorting task](https://datasets-server.huggingface.co/cached-assets/n0w0f/scirex-image/--/e0d6786f9cca37581574ef8a9b8bc94a6a004b8d/--/peak_sorting_multimodal_n25/train/0/image/image.png)
+![Figure [peak_sorting]: Example spectral data with N=25 peaks for identification and sorting task](images/sort.png)
 
 **Scalable Variable:** Number of peaks (N)
 
@@ -375,7 +375,7 @@ Tasks
 !!! 
     **Task Description:** The model is given a 2D grid (e.g., 10x10) representing a crystal surface. The grid is given as a list of lists, where 0 is an empty site and 1 is an impassable defect. The model is also given a starting coordinate and an ending coordinate. The task is to find the length of the shortest path an atom can take to get from start to end, moving only up, down, left, or right.
 
-![Figure [diffusion_path]: Example 25×25 grid with defects (dark) and pathfinding challenge for atomic diffusion task](https://datasets-server.huggingface.co/cached-assets/n0w0f/scirex-image/--/e0d6786f9cca37581574ef8a9b8bc94a6a004b8d/--/diffusion_path_multimodal_grid25/train/0/image/image.png)
+![Figure [diffusion_path]: Example 25×25 grid with defects (dark) and pathfinding challenge for atomic diffusion task](images/diffusion.png)
 
 **Scalable Variable:** Grid size (M×N)
 
