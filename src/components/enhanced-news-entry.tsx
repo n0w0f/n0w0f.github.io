@@ -1,18 +1,16 @@
 import { ArrowUpRight } from "lucide-react";
 import { News } from "@/data/news";
-import Image from "next/image";
+import { ImageModal } from "@/components/image-modal";
 
 export function EnhancedNewsEntry({ news }: { news: News }) {
   return (
     <div className="flex flex-col md:flex-row gap-6">
       {news.imageUrl && (
         <div className="md:w-32 md:h-32 w-full h-48 flex-shrink-0">
-          <Image
+          <ImageModal
             src={news.imageUrl}
             alt={news.title}
-            width={128}
-            height={128}
-            className="w-full h-full object-cover rounded-lg"
+            className="w-full h-full"
           />
         </div>
       )}
