@@ -1,10 +1,4 @@
-# research-website-template
-
-This is a React + Next.js template meant for research websites. See a [demo of the template here](https://tovacinni.github.io/research-website-template/). My own [personal website](https://tovacinni.github.io) is also built with the same template.
-
-In practice it could probably be used by anyone.
-
-It is meant to be customizeable, all through modifying the `src/data` - which have arrays of objects that are used to generate the website.
+Customize through modifying the `src/data` - which have arrays of objects that are used to generate the website.
 
 For example, `src/data/publication.ts` contains an array like:
 
