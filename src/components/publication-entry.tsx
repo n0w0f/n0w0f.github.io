@@ -1,6 +1,6 @@
-import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 import { Publication } from "@/data/publication";
+import { ImageModal } from "@/components/image-modal";
 
 export function PublicationEntry({
   publication,
@@ -10,13 +10,11 @@ export function PublicationEntry({
   return (
     <div className="flex flex-col sm:flex-row gap-6">
       {publication.imageUrl && (
-        <div className="w-full sm:w-1/4 min-w-[160px] relative">
-          <Image
+        <div className="w-full sm:w-1/4 min-w-[160px]">
+          <ImageModal
             src={publication.imageUrl}
             alt={publication.title}
-            width={160}
-            height={200}
-            className="rounded-lg transition-all duration-300"
+            className="w-full"
           />
         </div>
       )}
