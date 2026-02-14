@@ -6,13 +6,15 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 This is a Next.js-based research website template designed to showcase publications, experience, education, and portfolio items. The site uses a data-driven approach where all content is defined in TypeScript data files, making it easy to maintain and update without touching React components.
 
+This template was created as a more maintainable alternative to HTML/CSS templates like the Jon Barron template, which can grow to thousands of lines of duplicate code. This approach keeps content separate from presentation.
+
 ## Development Commands
 
 ```bash
 # Install dependencies
 npm install
 
-# Start development server
+# Start development server (accessible at http://localhost:3000)
 npm run dev
 
 # Build for production
@@ -25,70 +27,87 @@ npm start
 npm run lint
 ```
 
+Note: This project does not include tests.
+
 ## Architecture & Structure
 
 ### Data-Driven Design
-The website follows a data-driven architecture where all content is defined in `src/data/` files:
+All content is defined in TypeScript files in `src/data/`:
 
-- `src/data/aboutme.ts` - Profile information and description
-- `src/data/publication.ts` - Publications with schema definitions
-- `src/data/experience.ts` - Work experience entries
-- `src/data/education.ts` - Educational background
-- `src/data/portfolio.ts` - Portfolio/project items
-- `src/data/news.ts` - News/announcements
-- `src/data/section-order.ts` - Controls the order sections appear on the page
-- `src/data/title-description.ts` - Custom metadata for SEO
+- `aboutme.ts` - Profile information and description (supports HTML)
+- `publication.ts` - Publications with schema (year, conference, title, authors, optional: paperUrl, codeUrl, bibtex, tldr, imageUrl, award)
+- `experience.ts` - Work experience entries
+- `education.ts` - Educational background
+- `portfolio.ts` - Portfolio/project items
+- `news.ts` - News/announcements (supports HTML in description, optional: link, imageUrl, tags)
+- `section-order.ts` - Controls section display order (News, Publication, Experience, Education, Portfolio)
+- `title-description.ts` - SEO metadata
 
-### Component Structure
-React components in `src/components/` are purely presentational and consume data:
+React components in `src/components/` are purely presentational and consume data from these files. Any field marked with `?` in the TypeScript interfaces is optional - providing optional fields automatically enables corresponding UI features (e.g., adding `bibtex` to a publication displays a bibtex button).
 
-- `profile-section.tsx` - Left column profile display
-- `publication-entry.tsx` - Individual publication display
-- `experience-entry.tsx` - Individual experience entry
-- `education-entry.tsx` - Individual education entry
-- `portfolio-entry.tsx` - Individual portfolio item
-- `news-entry.tsx` - Individual news item
+### Page Layout
+The main page (`src/app/page.tsx`) uses a 12-column grid:
+- Left: 4-column sticky profile section
+- Right: 7-column scrolling content area (starts at column 6)
+- Responsive: stacks on mobile
+- Color scheme: `bg-[#FFFCF8]` background with Tailwind CSS
 
-### Layout System
-- Uses Tailwind CSS with a custom color scheme (`bg-[#FFFCF8]`)
-- Grid-based layout: 4-column profile section (sticky) + 7-column content area
-- Responsive design that stacks on mobile
+Sections render in the order specified in `section-order.ts`. The About section (from `aboutme.description`) always displays first if present.
 
 ### TypeScript Configuration
-- Path aliases configured: `@/*` maps to `./src/*`
-- Strict TypeScript settings enabled
-- Next.js plugin integration
+- Path alias: `@/*` maps to `./src/*`
+- Strict mode enabled
 
 ## Key Features
 
-### Section Ordering
-Sections can be reordered by modifying the `sectionOrder` array in `src/data/section-order.ts`. Available sections: News, Publication, Experience, Education, Portfolio.
-
-### Data Schema Flexibility
-Each data type has a well-defined TypeScript interface with optional fields (marked with `?`). Adding optional fields automatically enables corresponding UI features.
+### HTML Support in Content
+Both `aboutme.description` and `news.description` support HTML content, allowing for inline links and formatting:
+```typescript
+description: "I will contribute to <a href='https://example.com'>Example Org</a>."
+```
 
 ### Image Handling
-- Remote images configured in `next.config.ts` for domains: images.unsplash.com, lamalab.org, github.com
-- Local images served from `/public/static/`
+- Remote images: Configure allowed domains in `next.config.ts` (currently: images.unsplash.com, lamalab.org, github.com)
+- Local images: Place in `/public/static/` and reference as `/static/filename.png`
 
 ## Deployment
 
-### GitHub Pages
-- Automated deployment via `.github/workflows/nextjs.yml`
-- Deploys on push to `main` branch
-- Uses GitHub Actions to build and deploy to GitHub Pages
+### GitHub Pages (Primary Method)
+The repository is configured for automatic deployment to GitHub Pages:
 
-### Configuration
-- ESLint with Next.js TypeScript rules
-- PostCSS with Tailwind CSS
-- Static site generation optimized for GitHub Pages
+1. GitHub Actions workflow (`.github/workflows/nextjs.yml`) triggers on push to `main`
+2. Workflow builds Next.js site as static export (outputs to `./out`)
+3. Deploys to GitHub Pages environment
+4. Site available at `https://[username].github.io/` (if repo is named `[username].github.io`)
+
+To set up:
+- Repository name should be `[username].github.io` for main GitHub Pages site
+- In repository Settings → Pages, set Source to "GitHub Actions"
+- Push to `main` branch triggers automatic deployment
+
+### Vercel (Alternative)
+For custom domain deployment:
+1. Create Vercel account and import repository
+2. Vercel auto-detects Next.js and configures build
+3. Deploy with one click
 
 ## Adding Content
 
-To add new content, simply modify the relevant data file:
+To add content, modify arrays in `src/data/` files:
 
-1. **Publications**: Add objects to `publicationData` array in `src/data/publication.ts`
-2. **Experience**: Add objects to `experienceData` array in `src/data/experience.ts`
-3. **Education**: Add objects to `educationData` array in `src/data/education.ts`
+```typescript
+// Example: Adding a publication in src/data/publication.ts
+export const publicationData: Publication[] = [
+  {
+    year: "2024",
+    conference: "Conference Name",
+    title: "Paper Title",
+    authors: "Author Names",
+    paperUrl: "https://arxiv.org/...",  // optional
+    codeUrl: "https://github.com/...",   // optional
+    bibtex: "...",                       // optional - enables bibtex button
+  },
+];
+```
 
-Each interface defines required and optional fields. Optional fields enable additional UI features when provided.
+All interfaces define required and optional fields. Optional fields automatically enable corresponding UI features when provided.

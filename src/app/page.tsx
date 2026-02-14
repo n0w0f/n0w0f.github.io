@@ -1,16 +1,13 @@
-import { EducationEntry } from "@/components/education-entry";
 import { educationData } from "@/data/education";
-import { PublicationEntry } from "@/components/publication-entry";
 import { publicationData } from "@/data/publication";
 import { ProfileSection } from "@/components/profile-section";
 import { aboutMe } from "@/data/aboutme";
-import { EnhancedNewsEntry } from "@/components/enhanced-news-entry";
 import { newsData } from "@/data/news";
-import { ExperienceEntry } from "@/components/experience-entry";
 import { experienceData } from "@/data/experience";
-import { PortfolioEntry } from "@/components/portfolio-entry";
 import { portfolioData } from "@/data/portfolio";
-import { sectionOrder, Section } from "@/data/section-order";
+import { sectionOrder } from "@/data/section-order";
+import { SectionsContainer } from "@/components/sections-container";
+import { SectionNavigation } from "@/components/section-navigation";
 
 export default function Home() {
   return (
@@ -31,112 +28,26 @@ export default function Home() {
           <div className="col-span-12 md:col-span-7 md:col-start-6 space-y-24">
             {/* About section is typically first */}
             {aboutMe.description && (
-              // <section>
-              //   <p
-              //     className="font-serif text-sm leading-relaxed text-zinc-700 [&_a]:underline [&_a]:text-zinc-900 [&_a:hover]:text-zinc-600"
-              //     dangerouslySetInnerHTML={{ __html: aboutMe.description }}
-              //   />
-              // </section>
               <section>
-              <p
-                className="font-serif text-base leading-relaxed text-zinc-700 [&_a]:underline [&_a]:text-zinc-900 [&_a:hover]:text-zinc-600"
-                dangerouslySetInnerHTML={{ __html: aboutMe.description }}
-              />
+                <p
+                  className="font-serif text-base leading-relaxed text-zinc-700 [&_a]:underline [&_a]:text-zinc-900 [&_a:hover]:text-zinc-600"
+                  dangerouslySetInnerHTML={{ __html: aboutMe.description }}
+                />
               </section>
             )}
-            {/* Map through sectionOrder to render sections in correct order */}
-            {sectionOrder.map((sectionName) => {
-              // Most of this is redundant... but in case it needs to be unique.
-              switch (sectionName) {
-                case Section.News:
-                  return (
-                    newsData.length > 0 && (
-                      <section key={sectionName}>
-                        <h2 className="font-serif text-l mb-12 tracking-wide uppercase">
-                          News
-                        </h2>
-                        <div className="space-y-12">
-                          {newsData.map((news, index) => (
-                            <div key={index}>
-                              <EnhancedNewsEntry news={news} />
-                            </div>
-                          ))}
-                        </div>
-                      </section>
-                    )
-                  );
-                case Section.Education:
-                  return (
-                    educationData.length > 0 && (
-                      <section key={sectionName}>
-                        <h2 className="font-serif text-zinc-700 mb-12 tracking-wide uppercase">
-                          Education
-                        </h2>
-                        <div className="space-y-12">
-                          {educationData.map((education, index) => (
-                            <EducationEntry key={index} education={education} />
-                          ))}
-                        </div>
-                      </section>
-                    )
-                  );
-                case Section.Publication:
-                  return (
-                    publicationData.length > 0 && (
-                      <section key={sectionName}>
-                        <h2 className="font-serif text-l mb-12 tracking-wide uppercase">
-                          Publications
-                        </h2>
-                        <div className="space-y-12">
-                          {publicationData.map((publication, index) => (
-                            <div key={index}>
-                              <PublicationEntry publication={publication} />
-                              {index < publicationData.length - 1 && (
-                                <div className="h-px bg-zinc-200 my-8" />
-                              )}
-                            </div>
-                          ))}
-                        </div>
-                      </section>
-                    )
-                  );
-                case Section.Experience:
-                  return (
-                    experienceData.length > 0 && (
-                      <section key={sectionName}>
-                        <h2 className="font-serif text-md mb-12 tracking-wide uppercase">
-                          Experience
-                        </h2>
-                        <div className="space-y-12">
-                          {experienceData.map((experience, index) => (
-                            <ExperienceEntry
-                              key={index}
-                              experience={experience}
-                            />
-                          ))}
-                        </div>
-                      </section>
-                    )
-                  );
-                case Section.Portfolio:
-                  return (
-                    portfolioData.length > 0 && (
-                      <section key={sectionName}>
-                        <h2 className="font-serif text-md mb-12 tracking-wide uppercase">
-                          Portfolio
-                        </h2>
-                        <div className="space-y-12">
-                          {portfolioData.map((portfolio, index) => (
-                            <PortfolioEntry key={index} portfolio={portfolio} />
-                          ))}
-                        </div>
-                      </section>
-                    )
-                  );
-                default:
-                  return null;
-              }
-            })}
+
+            {/* Section Navigation */}
+            <SectionNavigation sections={sectionOrder} />
+
+            {/* Collapsible sections */}
+            <SectionsContainer
+              sectionOrder={sectionOrder}
+              newsData={newsData}
+              publicationData={publicationData}
+              experienceData={experienceData}
+              educationData={educationData}
+              portfolioData={portfolioData}
+            />
           </div>
         </div>
       </div>
