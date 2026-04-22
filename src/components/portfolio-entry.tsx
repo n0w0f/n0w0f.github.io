@@ -6,22 +6,24 @@ export function PortfolioEntry({ portfolio }: { portfolio: Portfolio }) {
   return (
     <div className="flex flex-col sm:flex-row gap-6">
       {portfolio.imageUrl && (
-        <div className="w-1/4 min-w-[160px] relative">
-          <Image
-            src={portfolio.imageUrl}
-            alt={portfolio.title}
-            width={160}
-            height={200}
-            className="rounded-lg"
-          />
+        <div className="w-full sm:w-1/4 min-w-[160px]">
+          <div className="relative aspect-[4/3] overflow-hidden rounded-lg bg-zinc-100">
+            <Image
+              src={portfolio.imageUrl}
+              alt={portfolio.title}
+              fill
+              sizes="(max-width: 640px) 100vw, 25vw"
+              className="object-cover"
+            />
+          </div>
         </div>
       )}
       <div className="flex flex-col flex-1">
-        <h3 className="font-serif text-md mb-3">
+        <h3 className="font-serif text-lg mb-3 text-zinc-900">
           {portfolio.projectUrl ? (
             <a
               href={portfolio.projectUrl}
-              className="group inline-flex items-center gap-2 hover:text-zinc-600 transition-colors duration-300"
+              className="group inline-flex items-center gap-2 hover:text-[color:var(--accent-strong)] transition-colors duration-300"
             >
               {portfolio.title}
               <ArrowUpRight
@@ -39,7 +41,7 @@ export function PortfolioEntry({ portfolio }: { portfolio: Portfolio }) {
             {portfolio.technologies.map((tech, index) => (
               <span
                 key={index}
-                className="text-xs text-zinc-600 px-2 py-1 bg-zinc-100 rounded-full"
+                className="text-xs text-amber-900 px-2 py-1 bg-amber-50 border border-amber-100 rounded-full"
               >
                 {tech}
               </span>
@@ -51,7 +53,7 @@ export function PortfolioEntry({ portfolio }: { portfolio: Portfolio }) {
           {portfolio.projectUrl && (
             <a
               href={portfolio.projectUrl}
-              className="group inline-flex items-center gap-2 text-xs text-zinc-500 hover:text-zinc-900 transition-colors duration-300"
+              className="group inline-flex items-center gap-2 text-xs text-zinc-600 hover:text-[color:var(--accent-strong)] transition-colors duration-300"
             >
               <ArrowUpRight
                 size={12}
@@ -63,7 +65,7 @@ export function PortfolioEntry({ portfolio }: { portfolio: Portfolio }) {
           {portfolio.codeUrl && (
             <a
               href={portfolio.codeUrl}
-              className="group inline-flex items-center gap-2 text-xs text-zinc-500 hover:text-zinc-900 transition-colors duration-300"
+              className="group inline-flex items-center gap-2 text-xs text-zinc-600 hover:text-[color:var(--accent-strong)] transition-colors duration-300"
             >
               <ArrowUpRight
                 size={12}
@@ -73,7 +75,7 @@ export function PortfolioEntry({ portfolio }: { portfolio: Portfolio }) {
             </a>
           )}
         </div>
-        <p className="text-sm text-zinc-600 mb-4 mt-4 italic">
+        <p className="text-sm text-zinc-700 mb-4 mt-4 italic">
           {portfolio.description}
         </p>
       </div>

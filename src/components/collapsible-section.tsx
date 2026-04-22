@@ -26,18 +26,9 @@ export function CollapsibleSection({
     : childrenArray;
   const hiddenCount = totalItems - visibleItemsWhenCollapsed;
 
-  const handleToggle = () => {
-    console.log(`[${title}] Toggling from ${isCollapsed} to ${!isCollapsed}`, {
-      totalItems,
-      visibleItemsWhenCollapsed,
-      shouldShowToggle,
-    });
-    setIsCollapsed(!isCollapsed);
-  };
-
   return (
     <section>
-      <h2 className="font-serif text-l mb-12 tracking-wide uppercase">
+      <h2 className="font-serif text-2xl font-normal mb-10 text-zinc-900">
         {title}
       </h2>
       <div className="relative">
@@ -50,8 +41,8 @@ export function CollapsibleSection({
 
       {shouldShowToggle && (
         <button
-          onClick={handleToggle}
-          className="mt-8 flex items-center gap-2 text-xs uppercase tracking-wider text-zinc-600 hover:text-zinc-900 transition-colors duration-300 cursor-pointer"
+          onClick={() => setIsCollapsed(!isCollapsed)}
+          className="mt-8 flex items-center gap-2 text-xs uppercase tracking-wider text-zinc-600 hover:text-[color:var(--accent-strong)] transition-colors duration-300 cursor-pointer"
         >
           {isCollapsed ? (
             <>

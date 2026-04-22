@@ -15,21 +15,23 @@ export function ImageModal({ src, alt, className }: ImageModalProps) {
 
   return (
     <>
-      {/* Thumbnail - clickable */}
-      <div
+      <button
+        type="button"
         onClick={() => setIsOpen(true)}
-        className={`cursor-pointer hover:opacity-80 transition-opacity ${className}`}
+        aria-label={`Expand image: ${alt}`}
+        className={`group relative block w-full h-full cursor-zoom-in overflow-hidden ${
+          className ?? ""
+        }`}
       >
         <Image
           src={src}
           alt={alt}
-          width={200}
-          height={200}
-          className="object-cover rounded"
+          fill
+          sizes="(max-width: 640px) 100vw, 25vw"
+          className="object-cover motion-safe:transition-transform motion-safe:duration-500 motion-safe:group-hover:scale-[1.03]"
         />
-      </div>
+      </button>
 
-      {/* Modal */}
       {isOpen && (
         <div
           className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4"
