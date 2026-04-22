@@ -10,6 +10,14 @@ export interface Experience {
 
 export const experienceData: Experience[] = [
   {
+    date: "Feb 2026 - Present",
+    title: "AI Resident (Intern)",
+    company: "Lila Sciences",
+    description:
+      "AI agents | Test time strategies | Long context scientific agent environments",
+    companyUrl: "https://www.lila.ai",
+  },
+  {
     date: "Nov 2023 - Present",
     title: "PhD Researcher",
     company: "Friedrich-Schiller-Universität Jena",

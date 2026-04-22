@@ -9,10 +9,22 @@ export interface Publication {
   tldr?: string;
   imageUrl?: string;
   leaderboardUrl?: string;
+  homepageUrl?: string;
   award?: string;
 }
 
 export const publicationData: Publication[] = [
+  {
+    year: "2026",
+    conference: "arXiv",
+    title: "AI scientists produce results without reasoning scientifically",
+    authors: "Nawaf Alampara, Martiño Ríos-García, .., N. M. Anoop Krishnan, Kevin Maik Jablonka",
+    paperUrl: "https://arxiv.org/abs/2604.18805",
+    codeUrl: "https://github.com/lamalab-org/corral",
+    homepageUrl: "https://lamalab-org.github.io/corral/",
+    imageUrl: "/static/corral.png",
+    tldr: "25,000 AI scientist experiments reveal that LLMs ignore gathered evidence, never update beliefs, and harness has less impact compared to the underlying model.",
+  },
   {
     year: "2026",
     conference: "Chemical Reviews",

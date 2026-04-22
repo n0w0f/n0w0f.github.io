@@ -40,10 +40,14 @@ All content is defined in TypeScript files in `src/data/`:
 - `education.ts` - Educational background
 - `portfolio.ts` - Portfolio/project items
 - `news.ts` - News/announcements (supports HTML in description, optional: link, imageUrl, tags)
-- `section-order.ts` - Controls section display order (News, Publication, Experience, Education, Portfolio)
+- `section-order.ts` - Defines the `Section` enum and the order sections render (News, Publication, Experience, Education, Portfolio)
+- `section-config.ts` - Per-section collapse behavior (`isCollapsed`, `visibleItemsWhenCollapsed`) keyed by the `Section` enum; consumed by `CollapsibleSection` via `SectionsContainer`
 - `title-description.ts` - SEO metadata
 
 React components in `src/components/` are purely presentational and consume data from these files. Any field marked with `?` in the TypeScript interfaces is optional - providing optional fields automatically enables corresponding UI features (e.g., adding `bibtex` to a publication displays a bibtex button).
+
+### Section rendering pipeline
+`page.tsx` hands `sectionOrder` plus all data arrays to `SectionsContainer`, which iterates the order and wraps each section in `CollapsibleSection` using the rules from `section-config.ts`. `SectionNavigation` renders jump-to links derived from the same `sectionOrder`. To add a new section type: extend the `Section` enum, add an entry to `sectionOrder`, add a config entry in `section-config.ts`, and wire the rendering branch in `SectionsContainer`.
 
 ### Page Layout
 The main page (`src/app/page.tsx`) uses a 12-column grid:
@@ -67,7 +71,7 @@ description: "I will contribute to <a href='https://example.com'>Example Org</a>
 ```
 
 ### Image Handling
-- Remote images: Configure allowed domains in `next.config.ts` (currently: images.unsplash.com, lamalab.org, github.com)
+- Remote images: Add the host to `images.remotePatterns` in `next.config.ts` before referencing an external image URL; otherwise `next/image` will reject it at build time.
 - Local images: Place in `/public/static/` and reference as `/static/filename.png`
 
 ## Deployment
