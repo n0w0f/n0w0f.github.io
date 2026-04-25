@@ -11,7 +11,7 @@ export const newsData: News[] = [
   {
     date: "February 2026",
     title: "Joined Lila Sciences",
-    description: "I joined <a href='https://www.lila.ai/'>Lila Sciences</a> as an AI resident. I would be working from Boston 🎉",
+    description: "I joined <a href='https://www.lila.ai/'>Lila Sciences</a> as an AI resident for this summer. I would be working from Boston 🎉",
     link: "https://www.lila.ai/",
     imageUrl: "https://media.licdn.com/dms/image/v2/D4E0BAQEqlTpUSd_btg/company-logo_200_200/company-logo_200_200/0/1732737531284/lila_sciences_logo?e=2147483647&v=beta&t=tiqomrfCSzfGVsxHH1nYePC3LsdaJytWFBtqu7v6oOw",
     tags: ["Lila Sciences", "AI Research", "Boston"]

@@ -11,5 +11,5 @@ export const sectionOrder = [
   Section.Publication,
   Section.Experience,
   Section.Education,
-  Section.Portfolio,
+  // Section.Portfolio,
 ];
