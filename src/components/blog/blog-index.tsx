@@ -48,7 +48,7 @@ export function BlogIndex({ posts }: BlogIndexProps) {
           <h1 className="font-serif text-4xl font-light tracking-wide text-zinc-900">Writing</h1>
           <div className="mt-4 h-px w-10 bg-[color:var(--accent)]" />
           <p className="mt-6 font-serif italic text-zinc-700">
-            Notes on Python, machine learning, and building research infrastructure.
+            Notes on learning and unlearning.
           </p>
         </header>
 

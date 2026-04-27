@@ -12,6 +12,6 @@ export const blogPosts: BlogPost[] = [
     title: "Threads, processes, and parallelism in Python",
     date: "2026-04-27",
     description:
-      "A first-principles walk through interpreters, the GIL, threads, and processes — and when each gives you real parallelism.",
+      "A walk through interpreters, the GIL, threads, and processes — and when each gives you real parallelism.",
   },
 ];
