@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
 import { Section } from "@/data/section-order";
 
 interface SectionNavigationProps {
@@ -60,7 +62,7 @@ export function SectionNavigation({ sections }: SectionNavigationProps) {
   };
 
   return (
-    <nav className="flex flex-wrap gap-3">
+    <nav className="flex flex-wrap items-center gap-3">
       {visibleSections.map((section) => {
         const isActive = activeSection === section;
         return (
@@ -78,6 +80,17 @@ export function SectionNavigation({ sections }: SectionNavigationProps) {
           </button>
         );
       })}
+      <span className="mx-1 h-4 w-px bg-zinc-300" aria-hidden />
+      <Link
+        href="/blog"
+        className="group inline-flex items-center gap-1.5 px-2 py-1.5 text-xs uppercase tracking-wider text-zinc-600 transition-colors hover:text-[color:var(--accent-strong)]"
+      >
+        Blog
+        <ArrowUpRight
+          size={12}
+          className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+        />
+      </Link>
     </nav>
   );
 }
