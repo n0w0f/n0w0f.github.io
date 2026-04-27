@@ -35,7 +35,7 @@ export const aboutMe: AboutMe = {
   githubUsername: "n0w0f",
   linkedinUsername: "n0w0f",
   twitterUsername: "Iam_Nawaf_",
-  blogUrl: "https://n0w0f.github.io/gsoc2025/index.html",
+  blogUrl: "/blog",
   cvUrl: "https://n0w0f.github.io/cv/index.html",
   institutionUrl: "https://www.uni-jena.de/en",
   // altName: "",

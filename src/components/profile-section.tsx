@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import {
   Github,
   Linkedin,
@@ -60,18 +61,16 @@ export function ProfileSection({ aboutMe }: ProfileSectionProps) {
         </p>
         <div className="flex gap-6 mb-6">
           {aboutMe.blogUrl && (
-            <a
+            <Link
               href={aboutMe.blogUrl}
               className="group inline-flex items-center gap-2 text-xs text-zinc-600 hover:text-[color:var(--accent-strong)] transition-colors duration-300"
-              target="_blank"
-              rel="noopener noreferrer"
             >
               <ArrowUpRight
                 size={12}
                 className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300"
               />
               <span className="tracking-wider uppercase">Blog</span>
-            </a>
+            </Link>
           )}
         </div>
         <div className="space-y-2">
