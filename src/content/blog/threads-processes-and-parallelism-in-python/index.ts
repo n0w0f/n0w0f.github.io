@@ -1,9 +1,13 @@
-import type { ComponentType } from "react";
 import type { TocItem } from "../index";
+import Post from "./post";
 
-// Placeholder — replaced in Task 14.
-const Post: ComponentType = () => null;
-
-export const tocItems: TocItem[] = [];
+export const tocItems: TocItem[] = [
+  { id: "interpreter",           label: "Interpreter" },
+  { id: "gil",                   label: "The GIL" },
+  { id: "processes-vs-threads",  label: "Processes vs threads" },
+  { id: "sequential-vs-parallel",label: "Sequential vs parallel" },
+  { id: "pitfalls",              label: "Pitfalls" },
+  { id: "when-to-pick",          label: "When to pick what" },
+];
 
 export default Post;
