@@ -1,14 +1,15 @@
+"use client";
+
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 
-export const metadata = {
-  title: "Moved — Nawaf Alampara",
-  description: "This page has moved to the blog.",
-  other: {
-    "refresh": "0; url=/blog",
-  },
-};
-
 export default function GsocAlias() {
+  const router = useRouter();
+  useEffect(() => {
+    router.replace("/blog");
+  }, [router]);
+
   return (
     <div className="min-h-screen bg-[#FFFCF8] flex items-center justify-center">
       <div className="mx-auto max-w-screen-sm px-8 py-24 text-center">
