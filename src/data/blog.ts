@@ -14,4 +14,11 @@ export const blogPosts: BlogPost[] = [
     description:
       "A walk through interpreters, the GIL, threads, and processes — and when each gives you real parallelism.",
   },
+  {
+    slug: "gsoc-2025",
+    title: "Benchmarking algorithmic reasoning in Gemini models",
+    date: "2025-09-01",
+    description:
+      "A GSoC 2025 report: disentangling knowledge, reasoning, and execution in LLMs on scientific tasks, and how performance degrades with algorithmic complexity.",
+  },
 ];
