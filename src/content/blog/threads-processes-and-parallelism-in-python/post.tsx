@@ -139,23 +139,6 @@ if __name__ == "__main__":
         </p>
       </section>
 
-      <section id="when-to-pick">
-        <h2>6. When to pick what</h2>
-        <p>
-          A short decision tree:
-        </p>
-        <ul>
-          <li><strong>One machine, I/O-bound</strong> — threads, or asyncio if the library supports it.</li>
-          <li><strong>One machine, CPU-bound pure Python</strong> — processes.</li>
-          <li><strong>One machine, CPU-bound via NumPy/Torch/etc.</strong> — threads often work, because the heavy lifting happens outside the GIL. Measure first.</li>
-          <li><strong>One machine, tiny units of work</strong> — sequential. Seriously. Benchmark before reaching for parallelism.</li>
-          <li><strong>Many machines</strong> — a distributed framework. Out of scope here, but the single-machine decisions still matter inside each node.</li>
-        </ul>
-
-        <p>
-          The boring path is usually right: start sequential, measure, then pick the smallest jump (threads or processes) that buys you what you need. Parallelism is a cost you pay for throughput; pay it deliberately.
-        </p>
-      </section>
     </>
   );
 }
