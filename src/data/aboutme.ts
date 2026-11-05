@@ -24,7 +24,7 @@ export const aboutMe: AboutMe = {
   institution: "Friedrich-Schiller-Universität Jena",
   // Note that links work in the description
   description:
-    `I am second-year PhD student, working with <a href='https://kjablonka.com/'>Dr. Kevin Maik Jablonka</a>.
+    `I am a PhD student in AI for science, working with <a href='https://kjablonka.com/'>Dr. Kevin Maik Jablonka</a>.
      I'm building machine learning systems to speed up scientific research, and I love projects that involve both research and building the tooling that enables and accelerates that research.
      Lately, I’ve been analyzing general-purpose AI models/systems to understand their limitations in scientific applications—where they fail—and interpreting them to uncover why they fail.
      My goal is to use these insights to design AI systems that aren’t just impressive on benchmarks but truly impactful for advancing science and research.`,

@@ -69,7 +69,7 @@ export function SectionsContainer({
                       <div key={index}>
                         <PublicationEntry publication={publication} />
                         {index < publicationData.length - 1 && (
-                          <div className="h-px bg-zinc-200 my-8" />
+                          <div className="my-7 h-px bg-[color:var(--rule)]" />
                         )}
                       </div>
                     ))}

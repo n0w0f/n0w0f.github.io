@@ -10,14 +10,6 @@ export interface Experience {
 
 export const experienceData: Experience[] = [
   {
-    date: "Feb 2026 - Present",
-    title: "AI Resident (Intern)",
-    company: "Lila Sciences",
-    description:
-      "AI agents | Test time strategies | Long context scientific agent environments",
-    companyUrl: "https://www.lila.ai",
-  },
-  {
     date: "Nov 2023 - Present",
     title: "PhD Researcher",
     company: "Friedrich-Schiller-Universität Jena",
@@ -25,6 +17,20 @@ export const experienceData: Experience[] = [
     //   "Developing benchmarking tools and datasets to finetune and evaluate LLMs' performance in material science. Building evaluation frameworks to assess LLMs' chemical reasoning, intuition, and knowledge against human experts. Creating multi-modal AI benchmarks for scientific data extraction, visual comprehension, and laboratory safety assessment.",
     advisor: "Dr. Kevin Maik Jablonka",
     companyUrl: "https://www.uni-jena.de/en",
+  },
+  {
+    date: "Feb 2026 - Jun 2026",
+    title: "AI Resident",
+    company: "Lila Sciences",
+    description: "Post-training methods for scientific language models",
+    companyUrl: "https://www.lila.ai",
+  },
+  {
+    date: "Jun 2025 - Sep 2025",
+    title: "Google Summer of Code Contributor",
+    company: "Google DeepMind",
+    description: "Evaluated scientific reasoning in Gemini models",
+    companyUrl: "https://deepmind.google/",
   },
   {
     date: "Nov 2023 - Apr 2024",

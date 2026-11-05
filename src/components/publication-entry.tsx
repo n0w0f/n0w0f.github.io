@@ -1,6 +1,5 @@
 import { ArrowUpRight } from "lucide-react";
 import { Publication } from "@/data/publication";
-import { ImageModal } from "@/components/image-modal";
 
 export function PublicationEntry({
   publication,
@@ -8,21 +7,10 @@ export function PublicationEntry({
   publication: Publication;
 }) {
   return (
-    <div className="flex flex-col sm:flex-row gap-6">
-      {publication.imageUrl && (
-        <div className="w-full sm:w-1/4 min-w-[160px]">
-          <div className="aspect-[4/3] overflow-hidden rounded-md bg-zinc-100">
-            <ImageModal
-              src={publication.imageUrl}
-              alt={publication.title}
-              className="w-full h-full"
-            />
-          </div>
-        </div>
-      )}
-      <div className="flex flex-col flex-1">
-        <div className="flex flex-row gap-4 items-center mb-2">
-          <p className="text-xs text-zinc-600">
+    <article>
+      <div className="flex flex-col">
+        <div className="mb-2 flex flex-row flex-wrap items-center gap-3">
+          <p className="font-sans text-[11px] font-semibold uppercase tracking-[0.13em] text-[color:var(--accent)]">
             {publication.conference} {publication.year}
           </p>
           {publication.award && (
@@ -34,10 +22,10 @@ export function PublicationEntry({
             </div>
           )}
         </div>
-        <h3 className="font-serif text-lg mb-3 text-zinc-900">
+        <h3 className="mb-2 font-serif text-[22px] leading-snug text-zinc-900">
           {publication.title}
         </h3>
-        <p className="text-sm text-zinc-700 mb-4">{publication.authors}</p>
+        <p className="mb-4 text-sm leading-relaxed text-zinc-600">{publication.authors}</p>
         <div className="flex flex-row flex-wrap gap-x-6 gap-y-2">
           {publication.paperUrl && (
             <a
@@ -101,11 +89,11 @@ export function PublicationEntry({
           )}
         </div>
         {publication.tldr && (
-          <p className="text-sm italic text-zinc-700 mt-4">
+          <p className="mt-4 max-w-[62ch] border-l-2 border-[color:var(--rule)] pl-3 text-sm leading-relaxed text-zinc-600">
             {publication.tldr}
           </p>
         )}
       </div>
-    </div>
+    </article>
   );
 }

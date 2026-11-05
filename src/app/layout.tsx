@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Noto_Serif, PT_Serif } from "next/font/google";
+import { DM_Sans, Geist_Mono, Newsreader } from "next/font/google";
 import "./globals.css";
 import { aboutMe } from "@/data/aboutme";
 import { customMetadata } from "@/data/title-description";
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const dmSans = DM_Sans({
+  variable: "--font-dm-sans",
   subsets: ["latin"],
 });
 
@@ -13,16 +13,9 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const notoSerif = Noto_Serif({
-  variable: "--font-noto-serif",
+const newsreader = Newsreader({
+  variable: "--font-newsreader",
   subsets: ["latin"],
-  weight: ["400", "700"],
-});
-
-const ptSerif = PT_Serif({
-  variable: "--font-pt-serif",
-  subsets: ["latin"],
-  weight: ["400", "700"],
 });
 
 export const metadata: Metadata = {
@@ -41,10 +34,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${notoSerif.variable} ${ptSerif.variable} antialiased`}
+        className={`${dmSans.variable} ${geistMono.variable} ${newsreader.variable} antialiased`}
       >
         <main className="">{children}</main>
-        <footer className="border-t border-zinc-200 bg-[#FFFCF8]">
+        <footer className="border-t border-[color:var(--rule)] bg-[color:var(--background)]">
           <div className="mx-auto max-w-screen-lg px-8 py-10 flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
             <div className="text-sm text-zinc-600">
               <p>

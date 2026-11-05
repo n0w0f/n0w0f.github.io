@@ -9,7 +9,7 @@ export interface Education {
 
 export const educationData: Education[] = [
   {
-    year: "2023—2026",
+    year: "Nov 2023—Present",
     institution: "Friedrich-Schiller-Universität Jena, Germany",
     degree: "PhD Machine Learning for Science",
     advisor: "Dr. Kevin Maik Jablonka",

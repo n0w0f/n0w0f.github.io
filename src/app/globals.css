@@ -3,26 +3,31 @@
 @tailwind utilities;
 
 :root {
-  --background: #FFFCF8;
-  --foreground: #171717;
-  --accent: #92400e;
-  --accent-strong: #78350f;
+  --background: #faf8f4;
+  --foreground: #25231f;
+  --accent: #9a5a32;
+  --accent-strong: #7a3f21;
+  --rule: #dfd8ce;
 }
 
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: var(--font-pt-serif), Georgia, serif;
+  font-family: var(--font-dm-sans), system-ui, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 .font-serif,
 .serif {
-  font-family: var(--font-pt-serif), var(--font-noto-serif), Georgia, serif;
+  font-family: var(--font-newsreader), Georgia, serif;
 }
 
 .font-sans,
 .sans {
-  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-family: var(--font-dm-sans), system-ui, sans-serif;
 }
 
 :where(a, button, [role="button"], input, select, textarea):focus-visible {

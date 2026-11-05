@@ -1,11 +1,9 @@
 import Image from "next/image";
-import Link from "next/link";
 import {
   Github,
   Linkedin,
   Mail,
   Twitter,
-  ArrowUpRight,
   GraduationCap,
 } from "lucide-react";
 import { AboutMe } from "@/data/aboutme";
@@ -20,22 +18,22 @@ export function ProfileSection({ aboutMe }: ProfileSectionProps) {
   }
 
   return (
-    <div className="md:sticky top-12 flex flex-row-reverse md:flex-col gap-4 md:space-y-8">
+    <div className="flex flex-row-reverse items-start gap-6 sm:gap-8 lg:flex-col lg:gap-7">
       {aboutMe.imageUrl && (
-        <div className="w-1/3 md:w-full flex-shrink-0">
-          <div className="relative max-h-[45vh] md:w-[65%] aspect-[3/4] overflow-hidden rounded-xl">
+        <div className="w-28 flex-shrink-0 sm:w-40 lg:w-52">
+          <div className="relative aspect-[4/5] overflow-hidden rounded-lg bg-[#e9e3da] ring-1 ring-[color:var(--rule)]">
             <Image
               src={aboutMe.imageUrl}
               alt={aboutMe.name}
               fill
               priority
-              className="object-cover grayscale motion-safe:transition-all motion-safe:duration-500 hover:grayscale-0"
+              className="object-cover object-top grayscale-[25%] motion-safe:transition-all motion-safe:duration-500 hover:grayscale-0"
             />
           </div>
         </div>
       )}
-      <div className="w-2/3 md:w-full">
-        <h1 className="font-serif text-3xl font-light tracking-wide mb-3 text-zinc-900">
+      <div className="min-w-0 flex-1">
+        <h1 className="mb-4 font-serif text-3xl font-normal leading-tight tracking-tight text-zinc-900 sm:text-4xl">
           {aboutMe.name}
         </h1>
         {aboutMe.altName && (
@@ -43,7 +41,7 @@ export function ProfileSection({ aboutMe }: ProfileSectionProps) {
             {aboutMe.altName}
           </p>
         )}
-        <p className="text-zinc-600 text-xs leading-relaxed tracking-wider uppercase mb-6">
+        <p className="mb-7 font-sans text-xs leading-relaxed tracking-[0.12em] text-zinc-600 uppercase">
           {aboutMe.title}
           <br />
           {aboutMe.institutionUrl ? (
@@ -59,21 +57,7 @@ export function ProfileSection({ aboutMe }: ProfileSectionProps) {
             aboutMe.institution
           )}
         </p>
-        <div className="flex gap-6 mb-6">
-          {aboutMe.blogUrl && (
-            <Link
-              href={aboutMe.blogUrl}
-              className="group inline-flex items-center gap-2 text-xs text-zinc-600 hover:text-[color:var(--accent-strong)] transition-colors duration-300"
-            >
-              <ArrowUpRight
-                size={12}
-                className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300"
-              />
-              <span className="tracking-wider uppercase">Blog</span>
-            </Link>
-          )}
-        </div>
-        <div className="space-y-2">
+        <div className="space-y-2.5 border-t border-[color:var(--rule)] pt-6 [&_a]:break-words">
           <a
             href={`mailto:${aboutMe.email}`}
             className="inline-flex items-center gap-2 text-sm text-zinc-700 hover:text-[color:var(--accent-strong)] transition-colors"

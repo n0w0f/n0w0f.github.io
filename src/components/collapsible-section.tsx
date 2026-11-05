@@ -28,14 +28,14 @@ export function CollapsibleSection({
 
   return (
     <section>
-      <h2 className="font-serif text-2xl font-normal mb-10 text-zinc-900">
+      <h2 className="mb-7 border-b border-[color:var(--rule)] pb-4 font-serif text-[28px] font-normal text-zinc-900">
         {title}
       </h2>
       <div className="relative">
-        <div className="space-y-12">{visibleChildren}</div>
+        <div className="space-y-9">{visibleChildren}</div>
 
         {shouldShowToggle && isCollapsed && (
-          <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#FFFCF8] via-[#FFFCF8]/80 to-transparent pointer-events-none" />
+          <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-[color:var(--background)] to-transparent" />
         )}
       </div>
 
